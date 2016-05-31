@@ -1,0 +1,96 @@
+resolve-pojo-on;
+database-is-online;
+generate-from-to;
+validate-resources - "statements.meta" entity.model dao.model;
+database-jdbc-driver   com.mysql.jdbc.Driver;
+database-has-url   "jdbc:mysql://localhost/tablehockey";
+database-login-username   root;
+database-login-password   root;
+
+pojogen-generate-wrappers;
+
+pojogen-make-it-final;
+pojogen-generate-operators;
+
+//DAO
+pojogen-inherit-many-to-one USER PLAYER_ID->PLAYER->ID;
+// POJO
+//pojogen-inherit-many-to-one user PLAYER_ID->player->ID;
+pojogen-ignore-one-to-many participant ID->game->AWAY_PARTICIPANT_ID;
+pojogen-ignore-one-to-many participant ID->play_off_game->AWAY_PARTICIPANT_ID;
+pojogen-ignore-one-to-many participant ID->game->AWAY_PARTICIPANT_ID;
+pojogen-ignore-one-to-many player ID->PLAY_OFF_GAME;
+pojogen-ignore-one-to-many player ID->FINAL_STANDING->PLAYER_ID;
+pojogen-table-many-to-many tournament_admin ID->TOURNAMENT->USER;
+
+pojogen-implements-interfaces java.io.Serializable;
+pojogen-generate-methods equals toString toInit isDef;
+
+pojogen-types-for-columns participant SCORE->org.tahom.repository.type.model.Score;
+pojogen-types-for-columns game RESULT->org.tahom.repository.type.model.Results;
+pojogen-types-for-columns play_off_game RESULT->org.tahom.repository.type.model.Results;
+pojogen-types-for-columns player SURNAME->org.tahom.repository.type.model.Surname;
+pojogen-types-for-columns ithf_tournament SERIES->org.tahom.repository.type.model.Series;
+
+metagen-column-meta-type participant SCORE->score;
+metagen-column-meta-type game RESULT->result;
+metagen-column-meta-type play_off_game RESULT->result;
+metagen-column-meta-type player SURNAME->surname;
+metagen-column-meta-type ithf_tournament SERIES->series;
+
+pojogen-rename-columns groups_TYPE B->BASIC F->FINAL P->PLAY_OFF;
+pojogen-rename-columns groups_PLAY_OFF_TYPE F->FINAL L->LOWER C->CROSS;
+
+pojogen-create-columns participant TEMP->boolean;
+
+pojogen-inherit-many-to-one play_off_game GAME_ID->game->ID;
+pojogen-inherit-many-to-one wch_qualification PLAYER_ID->player->ID;
+
+metagen-generate-sequences;
+
+pojogen-enum-for-check-constraints GameStatus game_STATUS play_off_game_STATUS;
+
+compress-meta-directives;
+pojogen-package org.tahom.repository.model;
+daogen-implementation-package impl;
+daogen-package org.tahom.repository.dao;
+
+is-table finalStanding final_standing;
+is-table game game;
+is-table groups groups;
+is-table ithfTournament ithf_tournament;
+is-table participant participant;
+is-table playOffGame play_off_game;
+is-table player player;
+is-table playingFormat playing_format;
+is-table rating rating;
+is-table ratingPoints rating_points;
+is-table stage stage;
+is-table tournament tournament;
+is-table tournamentAdmin tournament_admin;
+is-table tournamentRating tournament_rating;
+is-table user user;
+
+is-pojo FinalStanding org.tahom.repository.model.FinalStanding;
+is-pojo Game org.tahom.repository.model.Game;
+is-pojo Groups org.tahom.repository.model.Groups;
+is-pojo IthfTournament org.tahom.repository.model.IthfTournament;
+is-pojo Participant org.tahom.repository.model.Participant;
+is-pojo PlayOffGame org.tahom.repository.model.PlayOffGame;
+is-pojo Player org.tahom.repository.model.Player;
+is-pojo PlayingFormat org.tahom.repository.model.PlayingFormat;
+is-pojo Rating org.tahom.repository.model.Rating;
+is-pojo RatingPoints org.tahom.repository.model.RatingPoints;
+is-pojo Result org.tahom.repository.type.model.Result;
+is-pojo Results org.tahom.repository.type.model.Results;
+is-pojo Score org.tahom.repository.type.model.Score;
+is-pojo Stage org.tahom.repository.model.Stage;
+is-pojo Tournament org.tahom.repository.model.Tournament;
+is-pojo TournamentAdmin org.tahom.repository.model.TournamentAdmin;
+is-pojo TournamentRating org.tahom.repository.model.TournamentRating;
+is-pojo User org.tahom.repository.model.User;
+
+
+//database-debug-level TRACE;
+//pojogen-debug-level TRACE;
+metagen-debug-level TRACE;

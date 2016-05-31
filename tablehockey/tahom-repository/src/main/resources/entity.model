@@ -1,0 +1,360 @@
+package org.tahom.repository.model {
+
+    #Serializable(1)
+    final #Enum GameStatus {
+        #Values(DRAW = "DRAW",LOSE = "LOSE",WIN = "WIN")
+        #Attr String value
+    }
+
+    #Serializable(1)
+    final #Enum PlayerGender {
+        #Values(F = "F",I0 = "0",M = "M")
+        #Attr String value
+    }
+
+    #Serializable(1)
+    final #Enum PlayingFormatSortType {
+        #Values(CZ = "CZ",INFO = "INFO",SK = "SK")
+        #Attr String value
+    }
+
+    #Serializable(1)
+    final #Enum StageStatus {
+        #Values(BC = "BC",F = "F",NS = "NS")
+        #Attr String value
+    }
+
+    #Serializable(1)
+    final #Enum StageType {
+        #Values(PO = "PO",RR = "RR")
+        #Attr String value
+    }
+
+    #Serializable(1)
+    final #Enum TournamentStatus {
+        #Values(BC = "BC",F = "F",NS = "NS",RC = "RC",RO = "RO")
+        #Attr String value
+    }
+
+    #Serializable(1)
+    final #Enum UserRole {
+        #Values(ADMIN = "ADMIN",USER = "USER")
+        #Attr String value
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,finalRank)
+    final #Pojo FinalStanding {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #IsDef #ToInit #Index #IsPojo
+        #Attr Player player
+        #Required #Index
+        #Attr Integer finalRank
+        #ToInit #Required #Index #IsPojo
+        #Attr Tournament tournament
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,status,result)
+    final #Pojo Game {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #IsDef #ToInit #Index #IsPojo
+        #Attr Participant homeParticipant
+        #IsDef #ToInit #Index #IsPojo
+        #Attr Participant awayParticipant
+        #IsDef
+        #Attr GameStatus status
+        #IsDef
+        #Attr org.tahom.repository.type.model.Results result
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name)
+    final #Pojo Groups {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required #Index
+        #Attr String name
+        #ToInit #Required #Index #IsPojo
+        #Attr Stage stage
+        #ToInit
+        #Attr java.util.List <Participant> participants
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name,series,date,points,rank)
+    final #Pojo IthfTournament {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #ToInit #Required #Index #IsPojo
+        #Attr Player player
+        #IsDef
+        #Attr String name
+        #IsDef
+        #Attr org.tahom.repository.type.model.Series series
+        #Required
+        #Attr java.util.Date date
+        #IsDef
+        #Attr Integer points
+        #IsDef
+        #Attr Integer rank
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,points,rank,tournamentId,score,secondaryRank,temp)
+    final #Pojo Participant {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required
+        #Attr Integer points
+        #IsDef #Index
+        #Attr Integer rank
+        #Required #Index
+        #Attr Integer tournamentId
+        #IsDef #ToInit #Index #IsPojo
+        #Attr Groups group
+        #ToInit #Required #Index #IsPojo
+        #Attr Player player
+        #Required
+        #Attr org.tahom.repository.type.model.Score score
+        #IsDef
+        #Attr Integer secondaryRank
+        #IsDef
+        #Attr boolean temp
+        #ToInit
+        #Attr java.util.List <Game> games
+        #ToInit
+        #Attr java.util.List <PlayOffGame> playOffGames
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,status,result,position)
+    final #Pojo PlayOffGame {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #IsDef #ToInit #Index #IsPojo
+        #Attr Participant homeParticipant
+        #IsDef #ToInit #Index #IsPojo
+        #Attr Participant awayParticipant
+        #IsDef
+        #Attr GameStatus status
+        #IsDef
+        #Attr org.tahom.repository.type.model.Results result
+        #ToInit #Required #Index #IsPojo
+        #Attr Stage stage
+        #Required #Index
+        #Attr Integer position
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name,surname,nickname,gender,dateOfBirth,country,city,club,worldRanking,ithfId,nameAscii,surnameAscii,verification)
+    final abstract #Pojo Player {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required
+        #Attr String name
+        #Required
+        #Attr org.tahom.repository.type.model.Surname surname
+        #IsDef
+        #Attr String nickname
+        #Required
+        #Attr PlayerGender gender
+        #IsDef
+        #Attr java.util.Date dateOfBirth
+        #IsDef
+        #Attr String country
+        #IsDef
+        #Attr String city
+        #IsDef
+        #Attr String club
+        #IsDef
+        #Attr Integer worldRanking
+        #IsDef
+        #Attr Integer ithfId
+        #Required
+        #Attr String nameAscii
+        #Required
+        #Attr String surnameAscii
+        #Required
+        #Attr Boolean verification
+        #ToInit
+        #Attr java.util.List <FinalStanding> finalStandings
+        #ToInit
+        #Attr java.util.List <IthfTournament> ithfTournaments
+        #ToInit
+        #Attr java.util.List <Participant> participants
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name,finalPromoting,lowerPromoting,winPoints,playOffFinal,playOffLower,minPlayersInGroup,sortType,description)
+    final #Pojo PlayingFormat {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required
+        #Attr String name
+        #Required
+        #Attr Integer finalPromoting
+        #Required
+        #Attr Integer lowerPromoting
+        #Required
+        #Attr Integer winPoints
+        #Required
+        #Attr Integer playOffFinal
+        #Required
+        #Attr Integer playOffLower
+        #Required
+        #Attr Integer minPlayersInGroup
+        #Required
+        #Attr PlayingFormatSortType sortType
+        #Required
+        #Attr String description
+        #ToInit
+        #Attr java.util.List <Tournament> tournaments
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name)
+    final #Pojo Rating {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required
+        #Attr String name
+        #IsDef #ToInit #Index #IsPojo
+        #Attr RatingPoints ratingPoints
+        #ToInit
+        #Attr java.util.List <TournamentRating> tournamentRatings
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name,points,rank)
+    final #Pojo RatingPoints {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required
+        #Attr String name
+        #Required
+        #Attr Integer points
+        #Required
+        #Attr Integer rank
+        #ToInit
+        #Attr java.util.List <Rating> ratings
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name,sequence,numberOfHockey,winPoints,type,status)
+    final #Pojo Stage {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required #Index
+        #Attr String name
+        #Required
+        #Attr Integer sequence
+        #Required
+        #Attr Integer numberOfHockey
+        #Required
+        #Attr Integer winPoints
+        #Required
+        #Attr StageType type
+        #ToInit #Required #Index #IsPojo
+        #Attr Tournament tournament
+        #Required
+        #Attr StageStatus status
+        #IsDef #ToInit #Index #IsPojo
+        #Attr Stage copyResultStage
+        #ToInit
+        #Attr java.util.List <Groups> groups
+        #ToInit
+        #Attr java.util.List <PlayOffGame> playOffGames
+        #ToInit
+        #Attr java.util.List <Stage> stages
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name,status,visible)
+    final #Pojo Tournament {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required
+        #Attr String name
+        #Required
+        #Attr TournamentStatus status
+        #IsDef #ToInit #Index #IsPojo
+        #Attr PlayingFormat playingFormat
+        #Required
+        #Attr Boolean visible
+        #ToInit
+        #Attr java.util.List <FinalStanding> finalStandings
+        #ToInit
+        #Attr java.util.List <Stage> stages
+        #ToInit
+        #Attr java.util.List <TournamentRating> tournamentRatings
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id,tournamentId,userId)
+    final #Pojo TournamentAdmin {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #Required #Index
+        #Attr Integer tournamentId
+        #Required #Index
+        #Attr Integer userId
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #Equals(id) #ToString(id)
+    final #Pojo TournamentRating {
+        #PrimaryKey() #Index
+        #Attr Integer id
+        #ToInit #Required #Index #IsPojo
+        #Attr Tournament tournament
+        #ToInit #Required #Index #IsPojo
+        #Attr Rating rating
+        #Attr boolean onlyIds_
+        #Attr java.util.List <Integer> ids_
+    }
+
+    #Operators #Serializable(1) #ToString(email,login,password,phone,role,validity)
+    final #Pojo User extends Player {
+        #Required #Index
+        #Attr String email
+        #Required #Index
+        #Attr String login
+        #Required
+        #Attr String password
+        #IsDef
+        #Attr String phone
+        #Required
+        #Attr UserRole role
+        #Required
+        #Attr Boolean validity
+    }
+
+// Model statistics
+// Tables=15
+// Columns=92
+// Primary Keys=15
+// Exports=20
+// Imports=20
+// Indexes=43
+// Check Constraints=42
+// Procedures=0
+// Procedures Columns=0
+// Functions=0
+// Functions Columns=0
+	
+}

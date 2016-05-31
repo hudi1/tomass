@@ -1,0 +1,75 @@
+#Implementation(impl)
+package org.tahom.repository.dao {
+
+    #InheritanceHandler(player,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.FinalStanding) #Query(org.tahom.repository.model.FinalStanding)
+    #Dao FinalStandingDao {
+    }
+
+    #CRUD(org.tahom.repository.model.Game) #Query(org.tahom.repository.model.Game)
+    #Dao GameDao {
+    }
+
+    #CRUD(org.tahom.repository.model.Groups) #Query(org.tahom.repository.model.Groups)
+    #Dao GroupsDao {
+    }
+
+    #InheritanceHandler(player,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.IthfTournament) #Query(org.tahom.repository.model.IthfTournament)
+    #Dao IthfTournamentDao {
+    }
+
+    #InheritanceHandler(player,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.Participant) #Query(org.tahom.repository.model.Participant)
+    #Dao ParticipantDao {
+    }
+
+    #CRUD(org.tahom.repository.model.PlayOffGame) #Query(org.tahom.repository.model.PlayOffGame)
+    #Dao PlayOffGameDao {
+    }
+
+    #CRUD(org.tahom.repository.model.PlayingFormat) #Query(org.tahom.repository.model.PlayingFormat)
+    #Dao PlayingFormatDao {
+    }
+
+    #CRUD(org.tahom.repository.model.Rating) #Query(org.tahom.repository.model.Rating)
+    #Dao RatingDao {
+    }
+
+    #CRUD(org.tahom.repository.model.RatingPoints) #Query(org.tahom.repository.model.RatingPoints)
+    #Dao RatingPointsDao {
+    }
+
+    #CRUD(org.tahom.repository.model.Stage) #Query(org.tahom.repository.model.Stage)
+    #Dao StageDao {
+    }
+
+    #CRUD(org.tahom.repository.model.Tournament) #Query(org.tahom.repository.model.Tournament)
+    #Dao TournamentDao {
+    }
+
+    #CRUD(org.tahom.repository.model.TournamentAdmin) #Query(org.tahom.repository.model.TournamentAdmin)
+    #Dao TournamentAdminDao {
+    }
+
+    #CRUD(org.tahom.repository.model.TournamentRating) #Query(org.tahom.repository.model.TournamentRating)
+    #Dao TournamentRatingDao {
+    }
+
+    #CRUD(org.tahom.repository.model.User) #Query(org.tahom.repository.model.User)
+    #Dao UserDao {
+    }
+
+// Model statistics
+// Tables=15
+// Columns=91
+// Primary Keys=15
+// Exports=20
+// Imports=20
+// Indexes=43
+// Check Constraints=42
+// Procedures=0
+// Procedures Columns=0
+// Functions=0
+// Functions Columns=0
+
+
+
+}
