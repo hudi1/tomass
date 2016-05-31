@@ -10,7 +10,6 @@ import org.sqlproc.engine.SqlSession;
 import org.sqlproc.engine.SqlSessionFactory;
 import org.tahom.repository.dao.ParticipantDao;
 import org.tahom.repository.model.Participant;
-import org.tahom.repository.model.User;
 
 @SuppressWarnings("all")
 public class ParticipantDaoImpl implements ParticipantDao {
@@ -61,7 +60,7 @@ public class ParticipantDaoImpl implements ParticipantDao {
     	logger.trace("sql get: " + participant + " " + sqlControl);
     }
     org.sqlproc.engine.SqlCrudEngine sqlGetEngineParticipant = sqlEngineFactory.getCheckedCrudEngine("GET_PARTICIPANT");
-    sqlControl = getMoreResultClasses(participant, sqlControl);
+    //sqlControl = getMoreResultClasses(participant, sqlControl);
     Participant participantGot = sqlGetEngineParticipant.get(sqlSession, Participant.class, participant, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql get participant result: " + participantGot);
@@ -134,7 +133,7 @@ public class ParticipantDaoImpl implements ParticipantDao {
     	logger.trace("sql list participant: " + participant + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineParticipant = sqlEngineFactory.getCheckedQueryEngine("SELECT_PARTICIPANT");
-    sqlControl = getMoreResultClasses(participant, sqlControl);
+    //sqlControl = getMoreResultClasses(participant, sqlControl);
     List<Participant> participantList = sqlEngineParticipant.query(sqlSession, Participant.class, participant, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql list participant size: " + ((participantList != null) ? participantList.size() : "null"));
@@ -159,7 +158,7 @@ public class ParticipantDaoImpl implements ParticipantDao {
     	logger.trace("sql query participant: " + participant + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineParticipant = sqlEngineFactory.getCheckedQueryEngine("SELECT_PARTICIPANT");
-    sqlControl = getMoreResultClasses(participant, sqlControl);
+    //sqlControl = getMoreResultClasses(participant, sqlControl);
     int rownums = sqlEngineParticipant.query(sqlSession, Participant.class, participant, sqlControl, sqlRowProcessor);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql query participant size: " + rownums);
@@ -187,7 +186,7 @@ public class ParticipantDaoImpl implements ParticipantDao {
     	logger.trace("sql list participant: " + participant + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineParticipant = sqlEngineFactory.getCheckedQueryEngine("SELECT_PARTICIPANT");
-    sqlControl = getMoreResultClasses(participant, sqlControl);
+    //sqlControl = getMoreResultClasses(participant, sqlControl);
     participant.setOnlyIds_(true);
     java.util.Set<String> initAssociations = participant.getInitAssociations_();
     participant.setInitAssociations_(new java.util.HashSet<String>());
@@ -235,7 +234,7 @@ public class ParticipantDaoImpl implements ParticipantDao {
     	logger.trace("count participant: " + participant + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineParticipant = sqlEngineFactory.getCheckedQueryEngine("SELECT_PARTICIPANT");
-    sqlControl = getMoreResultClasses(participant, sqlControl);
+    //sqlControl = getMoreResultClasses(participant, sqlControl);
     int count = sqlEngineParticipant.queryCount(sqlSession, participant, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("count: " + count);
@@ -253,21 +252,5 @@ public class ParticipantDaoImpl implements ParticipantDao {
   
   public int count(final Participant participant) {
     return count(participant, null);
-  }
-  
-  public SqlControl getMoreResultClasses(final Participant participant, SqlControl sqlControl) {
-    if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
-    	return sqlControl;
-    java.util.Map<String, Class<?>> moreResultClasses = null;
-    if (participant != null && participant.toInit_(Participant.Association.player.name())) {
-    	if (moreResultClasses == null)
-    		moreResultClasses = new java.util.HashMap<String, Class<?>>();
-    	moreResultClasses.put("user", User.class);
-    }
-    if (moreResultClasses != null) {
-    	sqlControl = new org.sqlproc.engine.impl.SqlStandardControl(sqlControl);
-    	((org.sqlproc.engine.impl.SqlStandardControl) sqlControl).setMoreResultClasses(moreResultClasses);
-    }
-    return sqlControl;
   }
 }

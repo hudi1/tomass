@@ -22,7 +22,7 @@ INSERT_FINAL_STANDING(CRUD,in=FinalStanding,out=FinalStanding,tab=finalStanding)
 GET_FINAL_STANDING(CRUD,in=FinalStanding,out=FinalStanding,tab=finalStanding=f,tab=player=p,tab=tournament=t)=
   select %f.ID @id(id), %f.PLAYER_ID @player.id(id), %f.FINAL_RANK @finalRank, %f.TOURNAMENT_ID @tournament.id(id)
          {? :player(call=toInit) | , %p.NAME @player.name, %p.SURNAME @player.surname(type=surname), %p.NICKNAME @player.nickname, %p.GENDER @player.gender, %p.DATE_OF_BIRTH @player.dateOfBirth, %p.COUNTRY @player.country, %p.CITY @player.city, %p.CLUB @player.club, %p.WORLD_RANKING @player.worldRanking, %p.ITHF_ID @player.ithfId, %p.NAME_ASCII @player.nameAscii, %p.SURNAME_ASCII @player.surnameAscii, %p.VERIFICATION @player.verification }
-         {? :tournament(call=toInit) | , %t.NAME @tournament.name, %t.STATUS @tournament.status, %t.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t.VISIBLE @tournament.visible }
+         {? :tournament(call=toInit) | , %t.NAME @tournament.name, %t.STATUS @tournament.status, %t.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t.COUNTRY @tournament.country, %t.CITY @tournament.city, %t.ADDRESS @tournament.address, %t.LOGO @tournament.logo, %t.REGISTRATION_FROM @tournament.registrationFrom, %t.DATE @tournament.date, %t.REGISTRATION_TO @tournament.registrationTo, %t.VISIBLE @tournament.visible }
   from %%final_standing f
   {? :player(call=toInit) | left join %%player p on %f.PLAYER_ID = %p.ID }
   {? :tournament(call=toInit) | left join %%tournament t on %f.TOURNAMENT_ID = %t.ID }
@@ -57,7 +57,7 @@ SELECT_FINAL_STANDING(QRY,in=FinalStanding,out=FinalStanding,tab=finalStanding=f
   select {? :onlyIds_ | %f.ID @id(id) |
     %f.ID @id(id), %f.PLAYER_ID @player.id(id), %f.FINAL_RANK @finalRank, %f.TOURNAMENT_ID @tournament.id(id)
     {? :player(call=toInit) | , %p.NAME @player.name, %p.SURNAME @player.surname(type=surname), %p.NICKNAME @player.nickname, %p.GENDER @player.gender, %p.DATE_OF_BIRTH @player.dateOfBirth, %p.COUNTRY @player.country, %p.CITY @player.city, %p.CLUB @player.club, %p.WORLD_RANKING @player.worldRanking, %p.ITHF_ID @player.ithfId, %p.NAME_ASCII @player.nameAscii, %p.SURNAME_ASCII @player.surnameAscii, %p.VERIFICATION @player.verification }
-    {? :tournament(call=toInit) | , %t.NAME @tournament.name, %t.STATUS @tournament.status, %t.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t.VISIBLE @tournament.visible }
+    {? :tournament(call=toInit) | , %t.NAME @tournament.name, %t.STATUS @tournament.status, %t.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t.COUNTRY @tournament.country, %t.CITY @tournament.city, %t.ADDRESS @tournament.address, %t.LOGO @tournament.logo, %t.REGISTRATION_FROM @tournament.registrationFrom, %t.DATE @tournament.date, %t.REGISTRATION_TO @tournament.registrationTo, %t.VISIBLE @tournament.visible }
   }
   from %%final_standing f
   {? :player(call=toInit) | left join %%player p on %f.PLAYER_ID = %p.ID }
@@ -519,7 +519,7 @@ INSERT_PLAYING_FORMAT(CRUD,in=PlayingFormat,out=PlayingFormat,tab=playingFormat)
 
 GET_PLAYING_FORMAT(CRUD,in=PlayingFormat,out=PlayingFormat,tab=playingFormat=p,tab=tournament=t)=
   select %p.ID @id(id), %p.NAME @name, %p.FINAL_PROMOTING @finalPromoting, %p.LOWER_PROMOTING @lowerPromoting, %p.WIN_POINTS @winPoints, %p.PLAY_OFF_FINAL @playOffFinal, %p.PLAY_OFF_LOWER @playOffLower, %p.MIN_PLAYERS_IN_GROUP @minPlayersInGroup, %p.SORT_TYPE @sortType, %p.DESCRIPTION @description
-         {? :tournaments(call=toInit) | , %t.ID @tournaments.id(id), %t.NAME @tournaments.name, %t.STATUS @tournaments.status, %t.PLAYING_FORMAT_ID @tournaments.playingFormat.id, %t.VISIBLE @tournaments.visible }
+         {? :tournaments(call=toInit) | , %t.ID @tournaments.id(id), %t.NAME @tournaments.name, %t.STATUS @tournaments.status, %t.PLAYING_FORMAT_ID @tournaments.playingFormat.id, %t.COUNTRY @tournaments.country, %t.CITY @tournaments.city, %t.ADDRESS @tournaments.address, %t.LOGO @tournaments.logo, %t.REGISTRATION_FROM @tournaments.registrationFrom, %t.DATE @tournaments.date, %t.REGISTRATION_TO @tournaments.registrationTo, %t.VISIBLE @tournaments.visible }
   from %%playing_format p
   {? :tournaments(call=toInit) | left join %%tournament t on %p.ID = %t.PLAYING_FORMAT_ID }
   {= where
@@ -564,7 +564,7 @@ DELETE_PLAYING_FORMAT(CRUD,in=PlayingFormat,out=PlayingFormat,tab=playingFormat)
 SELECT_PLAYING_FORMAT(QRY,in=PlayingFormat,out=PlayingFormat,tab=playingFormat=p,tab=tournament=t)=
   select {? :onlyIds_ | %p.ID @id(id) |
     %p.ID @id(id), %p.NAME @name, %p.FINAL_PROMOTING @finalPromoting, %p.LOWER_PROMOTING @lowerPromoting, %p.WIN_POINTS @winPoints, %p.PLAY_OFF_FINAL @playOffFinal, %p.PLAY_OFF_LOWER @playOffLower, %p.MIN_PLAYERS_IN_GROUP @minPlayersInGroup, %p.SORT_TYPE @sortType, %p.DESCRIPTION @description
-    {? :tournaments(call=toInit) | , %t.ID @tournaments.id(id), %t.NAME @tournaments.name, %t.STATUS @tournaments.status, %t.PLAYING_FORMAT_ID @tournaments.playingFormat.id, %t.VISIBLE @tournaments.visible }
+    {? :tournaments(call=toInit) | , %t.ID @tournaments.id(id), %t.NAME @tournaments.name, %t.STATUS @tournaments.status, %t.PLAYING_FORMAT_ID @tournaments.playingFormat.id, %t.COUNTRY @tournaments.country, %t.CITY @tournaments.city, %t.ADDRESS @tournaments.address, %t.LOGO @tournaments.logo, %t.REGISTRATION_FROM @tournaments.registrationFrom, %t.DATE @tournaments.date, %t.REGISTRATION_TO @tournaments.registrationTo, %t.VISIBLE @tournaments.visible }
   }
   from %%playing_format p
   {? :tournaments(call=toInit) | left join %%tournament t on %p.ID = %t.PLAYING_FORMAT_ID }
@@ -705,7 +705,7 @@ GET_STAGE(CRUD,in=Stage,out=Stage,tab=stage=s,tab=stage=s1,tab=groups=g,tab=play
          {? :groups(call=toInit) | , %g.ID @groups.id(id), %g.NAME @groups.name, %g.STAGE_ID @groups.stage.id }
          {? :playOffGames(call=toInit) | , %p.ID @playOffGames.id(id), %p.HOME_PARTICIPANT_ID @playOffGames.homeParticipant.id, %p.AWAY_PARTICIPANT_ID @playOffGames.awayParticipant.id, %p.STATUS @playOffGames.status, %p.RESULT @playOffGames.result(type=result), %p.STAGE_ID @playOffGames.stage.id, %p.POSITION @playOffGames.position }
          {? :stages(call=toInit) | , %s2.ID @stages.id(id), %s2.NAME @stages.name, %s2.SEQUENCE @stages.sequence, %s2.NUMBER_OF_HOCKEY @stages.numberOfHockey, %s2.WIN_POINTS @stages.winPoints, %s2.TYPE @stages.type, %s2.TOURNAMENT_ID @stages.tournament.id(id), %s2.STATUS @stages.status, %s2.COPY_RESULT_STAGE @stages.copyResultStage.id(id) }
-         {? :tournament(call=toInit) | , %t.NAME @tournament.name, %t.STATUS @tournament.status, %t.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t.VISIBLE @tournament.visible }
+         {? :tournament(call=toInit) | , %t.NAME @tournament.name, %t.STATUS @tournament.status, %t.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t.COUNTRY @tournament.country, %t.CITY @tournament.city, %t.ADDRESS @tournament.address, %t.LOGO @tournament.logo, %t.REGISTRATION_FROM @tournament.registrationFrom, %t.DATE @tournament.date, %t.REGISTRATION_TO @tournament.registrationTo, %t.VISIBLE @tournament.visible }
   from %%stage s
   {? :copyResultStage(call=toInit) | left join %%stage s1 on %s.COPY_RESULT_STAGE = %s1.ID }
   {? :groups(call=toInit) | left join %%groups g on %s.ID = %g.STAGE_ID }
@@ -756,7 +756,7 @@ SELECT_STAGE(QRY,in=Stage,out=Stage,tab=stage=s,tab=stage=s1,tab=groups=g,tab=pl
     {? :groups(call=toInit) | , %g.ID @groups.id(id), %g.NAME @groups.name, %g.STAGE_ID @groups.stage.id }
     {? :playOffGames(call=toInit) | , %p.ID @playOffGames.id(id), %p.HOME_PARTICIPANT_ID @playOffGames.homeParticipant.id, %p.AWAY_PARTICIPANT_ID @playOffGames.awayParticipant.id, %p.STATUS @playOffGames.status, %p.RESULT @playOffGames.result(type=result), %p.STAGE_ID @playOffGames.stage.id, %p.POSITION @playOffGames.position }
     {? :stages(call=toInit) | , %s2.ID @stages.id(id), %s2.NAME @stages.name, %s2.SEQUENCE @stages.sequence, %s2.NUMBER_OF_HOCKEY @stages.numberOfHockey, %s2.WIN_POINTS @stages.winPoints, %s2.TYPE @stages.type, %s2.TOURNAMENT_ID @stages.tournament.id(id), %s2.STATUS @stages.status, %s2.COPY_RESULT_STAGE @stages.copyResultStage.id(id) }
-    {? :tournament(call=toInit) | , %t.NAME @tournament.name, %t.STATUS @tournament.status, %t.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t.VISIBLE @tournament.visible }
+    {? :tournament(call=toInit) | , %t.NAME @tournament.name, %t.STATUS @tournament.status, %t.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t.COUNTRY @tournament.country, %t.CITY @tournament.city, %t.ADDRESS @tournament.address, %t.LOGO @tournament.logo, %t.REGISTRATION_FROM @tournament.registrationFrom, %t.DATE @tournament.date, %t.REGISTRATION_TO @tournament.registrationTo, %t.VISIBLE @tournament.visible }
   }
   from %%stage s
   {? :copyResultStage(call=toInit) | left join %%stage s1 on %s.COPY_RESULT_STAGE = %s1.ID }
@@ -783,12 +783,12 @@ SELECT_STAGE(QRY,in=Stage,out=Stage,tab=stage=s,tab=stage=s1,tab=groups=g,tab=pl
 ;
 
 INSERT_TOURNAMENT(CRUD,in=Tournament,out=Tournament,tab=tournament)=
-  insert into %%tournament (%ID, %NAME, %STATUS, %PLAYING_FORMAT_ID, %VISIBLE)
-  {= values (:id(seq=TOURNAMENT), :name, :status, :playingFormat.id, :visible) }
+  insert into %%tournament (%ID, %NAME, %STATUS, %PLAYING_FORMAT_ID, %COUNTRY, %CITY, %ADDRESS, %LOGO, %REGISTRATION_FROM, %DATE, %REGISTRATION_TO, %VISIBLE)
+  {= values (:id(seq=TOURNAMENT), :name, :status, :playingFormat.id, :country, :city, :address, :logo, :registrationFrom, :date, :registrationTo, :visible) }
 ;
 
 GET_TOURNAMENT(CRUD,in=Tournament,out=Tournament,tab=tournament=t,tab=finalStanding=f,tab=playingFormat=p,tab=stage=s,tab=tournamentRating=t1)=
-  select %t.ID @id(id), %t.NAME @name, %t.STATUS @status, %t.PLAYING_FORMAT_ID @playingFormat.id(id), %t.VISIBLE @visible
+  select %t.ID @id(id), %t.NAME @name, %t.STATUS @status, %t.PLAYING_FORMAT_ID @playingFormat.id(id), %t.COUNTRY @country, %t.CITY @city, %t.ADDRESS @address, %t.LOGO @logo, %t.REGISTRATION_FROM @registrationFrom, %t.DATE @date, %t.REGISTRATION_TO @registrationTo, %t.VISIBLE @visible
          {? :finalStandings(call=toInit) | , %f.ID @finalStandings.id(id), %f.PLAYER_ID @finalStandings.player.id, %f.FINAL_RANK @finalStandings.finalRank, %f.TOURNAMENT_ID @finalStandings.tournament.id }
          {? :playingFormat(call=toInit) | , %p.NAME @playingFormat.name, %p.FINAL_PROMOTING @playingFormat.finalPromoting, %p.LOWER_PROMOTING @playingFormat.lowerPromoting, %p.WIN_POINTS @playingFormat.winPoints, %p.PLAY_OFF_FINAL @playingFormat.playOffFinal, %p.PLAY_OFF_LOWER @playingFormat.playOffLower, %p.MIN_PLAYERS_IN_GROUP @playingFormat.minPlayersInGroup, %p.SORT_TYPE @playingFormat.sortType, %p.DESCRIPTION @playingFormat.description }
          {? :stages(call=toInit) | , %s.ID @stages.id(id), %s.NAME @stages.name, %s.SEQUENCE @stages.sequence, %s.NUMBER_OF_HOCKEY @stages.numberOfHockey, %s.WIN_POINTS @stages.winPoints, %s.TYPE @stages.type, %s.TOURNAMENT_ID @stages.tournament.id, %s.STATUS @stages.status, %s.COPY_RESULT_STAGE @stages.copyResultStage.id }
@@ -803,6 +803,13 @@ GET_TOURNAMENT(CRUD,in=Tournament,out=Tournament,tab=tournament=t,tab=finalStand
     {& %t.NAME ::= :name }
     {& %t.STATUS ::= :status }
     {& %t.PLAYING_FORMAT_ID ::= :playingFormat.id }
+    {& %t.COUNTRY ::= :country }
+    {& %t.CITY ::= :city }
+    {& %t.ADDRESS ::= :address }
+    {& %t.LOGO ::= :logo }
+    {& %t.REGISTRATION_FROM ::= :registrationFrom }
+    {& %t.DATE ::= :date }
+    {& %t.REGISTRATION_TO ::= :registrationTo }
     {& %t.VISIBLE ::= :visible }
   }
 ;
@@ -813,6 +820,13 @@ UPDATE_TOURNAMENT(CRUD,in=Tournament,out=Tournament,tab=tournament)=
     { ,%NAME = :name(call=isDef) }
     { ,%STATUS = :status(call=isDef) }
     { ,%PLAYING_FORMAT_ID = :playingFormat.id(call=isDef) }
+    { ,%COUNTRY = :country(call=isDef) }
+    { ,%CITY = :city(call=isDef) }
+    { ,%ADDRESS = :address(call=isDef) }
+    { ,%LOGO = :logo(call=isDef) }
+    { ,%REGISTRATION_FROM = :registrationFrom(call=isDef) }
+    { ,%DATE = :date(call=isDef) }
+    { ,%REGISTRATION_TO = :registrationTo(call=isDef) }
     { ,%VISIBLE = :visible(call=isDef) }
   }
   {= where
@@ -829,7 +843,7 @@ DELETE_TOURNAMENT(CRUD,in=Tournament,out=Tournament,tab=tournament)=
 
 SELECT_TOURNAMENT(QRY,in=Tournament,out=Tournament,tab=tournament=t,tab=finalStanding=f,tab=playingFormat=p,tab=stage=s,tab=tournamentRating=t1)=
   select {? :onlyIds_ | %t.ID @id(id) |
-    %t.ID @id(id), %t.NAME @name, %t.STATUS @status, %t.PLAYING_FORMAT_ID @playingFormat.id(id), %t.VISIBLE @visible
+    %t.ID @id(id), %t.NAME @name, %t.STATUS @status, %t.PLAYING_FORMAT_ID @playingFormat.id(id), %t.COUNTRY @country, %t.CITY @city, %t.ADDRESS @address, %t.LOGO @logo, %t.REGISTRATION_FROM @registrationFrom, %t.DATE @date, %t.REGISTRATION_TO @registrationTo, %t.VISIBLE @visible
     {? :finalStandings(call=toInit) | , %f.ID @finalStandings.id(id), %f.PLAYER_ID @finalStandings.player.id, %f.FINAL_RANK @finalStandings.finalRank, %f.TOURNAMENT_ID @finalStandings.tournament.id }
     {? :playingFormat(call=toInit) | , %p.NAME @playingFormat.name, %p.FINAL_PROMOTING @playingFormat.finalPromoting, %p.LOWER_PROMOTING @playingFormat.lowerPromoting, %p.WIN_POINTS @playingFormat.winPoints, %p.PLAY_OFF_FINAL @playingFormat.playOffFinal, %p.PLAY_OFF_LOWER @playingFormat.playOffLower, %p.MIN_PLAYERS_IN_GROUP @playingFormat.minPlayersInGroup, %p.SORT_TYPE @playingFormat.sortType, %p.DESCRIPTION @playingFormat.description }
     {? :stages(call=toInit) | , %s.ID @stages.id(id), %s.NAME @stages.name, %s.SEQUENCE @stages.sequence, %s.NUMBER_OF_HOCKEY @stages.numberOfHockey, %s.WIN_POINTS @stages.winPoints, %s.TYPE @stages.type, %s.TOURNAMENT_ID @stages.tournament.id, %s.STATUS @stages.status, %s.COPY_RESULT_STAGE @stages.copyResultStage.id }
@@ -845,6 +859,13 @@ SELECT_TOURNAMENT(QRY,in=Tournament,out=Tournament,tab=tournament=t,tab=finalSta
     {& UPPER(%t.NAME) like :+name }
     {& UPPER(%t.STATUS) like :+status }
     {& %t.PLAYING_FORMAT_ID ::= :playingFormat.id }
+    {& UPPER(%t.COUNTRY) like :+country }
+    {& UPPER(%t.CITY) like :+city }
+    {& UPPER(%t.ADDRESS) like :+address }
+    {& %t.LOGO ::= :logo }
+    {& %t.REGISTRATION_FROM ::= :registrationFrom }
+    {& %t.DATE ::= :date }
+    {& %t.REGISTRATION_TO ::= :registrationTo }
     {& %t.VISIBLE ::= :visible }
     {& %t.ID in :ids_ }
   }
@@ -909,7 +930,7 @@ INSERT_TOURNAMENT_RATING(CRUD,in=TournamentRating,out=TournamentRating,tab=tourn
 GET_TOURNAMENT_RATING(CRUD,in=TournamentRating,out=TournamentRating,tab=tournamentRating=t,tab=rating=r,tab=tournament=t1)=
   select %t.ID @id(id), %t.TOURNAMENT_ID @tournament.id(id), %t.RATING_ID @rating.id(id)
          {? :rating(call=toInit) | , %r.NAME @rating.name, %r.RATING_POINTS_ID @rating.ratingPoints.id }
-         {? :tournament(call=toInit) | , %t1.NAME @tournament.name, %t1.STATUS @tournament.status, %t1.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t1.VISIBLE @tournament.visible }
+         {? :tournament(call=toInit) | , %t1.NAME @tournament.name, %t1.STATUS @tournament.status, %t1.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t1.COUNTRY @tournament.country, %t1.CITY @tournament.city, %t1.ADDRESS @tournament.address, %t1.LOGO @tournament.logo, %t1.REGISTRATION_FROM @tournament.registrationFrom, %t1.DATE @tournament.date, %t1.REGISTRATION_TO @tournament.registrationTo, %t1.VISIBLE @tournament.visible }
   from %%tournament_rating t
   {? :rating(call=toInit) | left join %%rating r on %t.RATING_ID = %r.ID }
   {? :tournament(call=toInit) | left join %%tournament t1 on %t.TOURNAMENT_ID = %t1.ID }
@@ -942,7 +963,7 @@ SELECT_TOURNAMENT_RATING(QRY,in=TournamentRating,out=TournamentRating,tab=tourna
   select {? :onlyIds_ | %t.ID @id(id) |
     %t.ID @id(id), %t.TOURNAMENT_ID @tournament.id(id), %t.RATING_ID @rating.id(id)
     {? :rating(call=toInit) | , %r.NAME @rating.name, %r.RATING_POINTS_ID @rating.ratingPoints.id }
-    {? :tournament(call=toInit) | , %t1.NAME @tournament.name, %t1.STATUS @tournament.status, %t1.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t1.VISIBLE @tournament.visible }
+    {? :tournament(call=toInit) | , %t1.NAME @tournament.name, %t1.STATUS @tournament.status, %t1.PLAYING_FORMAT_ID @tournament.playingFormat.id, %t1.COUNTRY @tournament.country, %t1.CITY @tournament.city, %t1.ADDRESS @tournament.address, %t1.LOGO @tournament.logo, %t1.REGISTRATION_FROM @tournament.registrationFrom, %t1.DATE @tournament.date, %t1.REGISTRATION_TO @tournament.registrationTo, %t1.VISIBLE @tournament.visible }
   }
   from %%tournament_rating t
   {? :rating(call=toInit) | left join %%rating r on %t.RATING_ID = %r.ID }
@@ -1025,7 +1046,7 @@ SELECT_USER(QRY,in=User,out=User,tab=user=u,tab=player=p)=
 
 // Model statistics
 // Tables=15
-// Columns=92
+// Columns=99
 // Primary Keys=15
 // Exports=20
 // Imports=20
@@ -1035,3 +1056,5 @@ SELECT_USER(QRY,in=User,out=User,tab=user=u,tab=player=p)=
 // Procedures Columns=0
 // Functions=0
 // Functions Columns=0
+
+

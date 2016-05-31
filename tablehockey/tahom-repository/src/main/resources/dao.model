@@ -1,7 +1,8 @@
 #Implementation(impl)
 package org.tahom.repository.dao {
 
-    #InheritanceHandler(player,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.FinalStanding) #Query(org.tahom.repository.model.FinalStanding)
+
+    #CRUD(org.tahom.repository.model.FinalStanding) #Query(org.tahom.repository.model.FinalStanding)
     #Dao FinalStandingDao {
     }
 
@@ -13,16 +14,20 @@ package org.tahom.repository.dao {
     #Dao GroupsDao {
     }
 
-    #InheritanceHandler(player,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.IthfTournament) #Query(org.tahom.repository.model.IthfTournament)
+    #CRUD(org.tahom.repository.model.IthfTournament) #Query(org.tahom.repository.model.IthfTournament)
     #Dao IthfTournamentDao {
     }
 
-    #InheritanceHandler(player,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.Participant) #Query(org.tahom.repository.model.Participant)
+    #CRUD(org.tahom.repository.model.Participant) #Query(org.tahom.repository.model.Participant)
     #Dao ParticipantDao {
     }
 
     #CRUD(org.tahom.repository.model.PlayOffGame) #Query(org.tahom.repository.model.PlayOffGame)
     #Dao PlayOffGameDao {
+    }
+
+    #CRUD(org.tahom.repository.model.Player) #Query(org.tahom.repository.model.Player)
+    #Dao PlayerDao {
     }
 
     #CRUD(org.tahom.repository.model.PlayingFormat) #Query(org.tahom.repository.model.PlayingFormat)
@@ -59,7 +64,7 @@ package org.tahom.repository.dao {
 
 // Model statistics
 // Tables=15
-// Columns=91
+// Columns=99
 // Primary Keys=15
 // Exports=20
 // Imports=20
@@ -69,7 +74,6 @@ package org.tahom.repository.dao {
 // Procedures Columns=0
 // Functions=0
 // Functions Columns=0
-
 
 
 }

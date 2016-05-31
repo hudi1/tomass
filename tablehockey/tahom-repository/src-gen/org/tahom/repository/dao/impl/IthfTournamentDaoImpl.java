@@ -10,7 +10,6 @@ import org.sqlproc.engine.SqlSession;
 import org.sqlproc.engine.SqlSessionFactory;
 import org.tahom.repository.dao.IthfTournamentDao;
 import org.tahom.repository.model.IthfTournament;
-import org.tahom.repository.model.User;
 
 @SuppressWarnings("all")
 public class IthfTournamentDaoImpl implements IthfTournamentDao {
@@ -61,7 +60,7 @@ public class IthfTournamentDaoImpl implements IthfTournamentDao {
     	logger.trace("sql get: " + ithfTournament + " " + sqlControl);
     }
     org.sqlproc.engine.SqlCrudEngine sqlGetEngineIthfTournament = sqlEngineFactory.getCheckedCrudEngine("GET_ITHF_TOURNAMENT");
-    sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
+    //sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
     IthfTournament ithfTournamentGot = sqlGetEngineIthfTournament.get(sqlSession, IthfTournament.class, ithfTournament, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql get ithfTournament result: " + ithfTournamentGot);
@@ -134,7 +133,7 @@ public class IthfTournamentDaoImpl implements IthfTournamentDao {
     	logger.trace("sql list ithfTournament: " + ithfTournament + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineIthfTournament = sqlEngineFactory.getCheckedQueryEngine("SELECT_ITHF_TOURNAMENT");
-    sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
+    //sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
     List<IthfTournament> ithfTournamentList = sqlEngineIthfTournament.query(sqlSession, IthfTournament.class, ithfTournament, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql list ithfTournament size: " + ((ithfTournamentList != null) ? ithfTournamentList.size() : "null"));
@@ -159,7 +158,7 @@ public class IthfTournamentDaoImpl implements IthfTournamentDao {
     	logger.trace("sql query ithfTournament: " + ithfTournament + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineIthfTournament = sqlEngineFactory.getCheckedQueryEngine("SELECT_ITHF_TOURNAMENT");
-    sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
+    //sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
     int rownums = sqlEngineIthfTournament.query(sqlSession, IthfTournament.class, ithfTournament, sqlControl, sqlRowProcessor);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql query ithfTournament size: " + rownums);
@@ -187,7 +186,7 @@ public class IthfTournamentDaoImpl implements IthfTournamentDao {
     	logger.trace("sql list ithfTournament: " + ithfTournament + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineIthfTournament = sqlEngineFactory.getCheckedQueryEngine("SELECT_ITHF_TOURNAMENT");
-    sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
+    //sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
     ithfTournament.setOnlyIds_(true);
     java.util.Set<String> initAssociations = ithfTournament.getInitAssociations_();
     ithfTournament.setInitAssociations_(new java.util.HashSet<String>());
@@ -235,7 +234,7 @@ public class IthfTournamentDaoImpl implements IthfTournamentDao {
     	logger.trace("count ithfTournament: " + ithfTournament + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineIthfTournament = sqlEngineFactory.getCheckedQueryEngine("SELECT_ITHF_TOURNAMENT");
-    sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
+    //sqlControl = getMoreResultClasses(ithfTournament, sqlControl);
     int count = sqlEngineIthfTournament.queryCount(sqlSession, ithfTournament, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("count: " + count);
@@ -253,21 +252,5 @@ public class IthfTournamentDaoImpl implements IthfTournamentDao {
   
   public int count(final IthfTournament ithfTournament) {
     return count(ithfTournament, null);
-  }
-  
-  public SqlControl getMoreResultClasses(final IthfTournament ithfTournament, SqlControl sqlControl) {
-    if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
-    	return sqlControl;
-    java.util.Map<String, Class<?>> moreResultClasses = null;
-    if (ithfTournament != null && ithfTournament.toInit_(IthfTournament.Association.player.name())) {
-    	if (moreResultClasses == null)
-    		moreResultClasses = new java.util.HashMap<String, Class<?>>();
-    	moreResultClasses.put("user", User.class);
-    }
-    if (moreResultClasses != null) {
-    	sqlControl = new org.sqlproc.engine.impl.SqlStandardControl(sqlControl);
-    	((org.sqlproc.engine.impl.SqlStandardControl) sqlControl).setMoreResultClasses(moreResultClasses);
-    }
-    return sqlControl;
   }
 }

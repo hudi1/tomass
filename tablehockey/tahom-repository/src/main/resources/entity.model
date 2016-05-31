@@ -155,7 +155,7 @@ package org.tahom.repository.model {
     }
 
     #Operators #Serializable(1) #Equals(id) #ToString(id,name,surname,nickname,gender,dateOfBirth,country,city,club,worldRanking,ithfId,nameAscii,surnameAscii,verification)
-    final abstract #Pojo Player {
+    final #Pojo Player {
         #PrimaryKey() #Index
         #Attr Integer id
         #Required
@@ -282,7 +282,7 @@ package org.tahom.repository.model {
         #Attr java.util.List <Integer> ids_
     }
 
-    #Operators #Serializable(1) #Equals(id) #ToString(id,name,status,visible)
+    #Operators #Serializable(1) #Equals(id) #ToString(id,name,status,country,city,address,logo,registrationFrom,date,registrationTo,visible)
     final #Pojo Tournament {
         #PrimaryKey() #Index
         #Attr Integer id
@@ -292,6 +292,20 @@ package org.tahom.repository.model {
         #Attr TournamentStatus status
         #IsDef #ToInit #Index #IsPojo
         #Attr PlayingFormat playingFormat
+        #IsDef
+        #Attr String country
+        #IsDef
+        #Attr String city
+        #IsDef
+        #Attr String address
+        #IsDef
+        #Attr byte[] logo
+        #IsDef
+        #Attr java.sql.Timestamp registrationFrom
+        #IsDef
+        #Attr java.util.Date date
+        #IsDef
+        #Attr java.sql.Timestamp registrationTo
         #Required
         #Attr Boolean visible
         #ToInit
@@ -346,7 +360,7 @@ package org.tahom.repository.model {
 
 // Model statistics
 // Tables=15
-// Columns=92
+// Columns=99
 // Primary Keys=15
 // Exports=20
 // Imports=20
@@ -356,5 +370,6 @@ package org.tahom.repository.model {
 // Procedures Columns=0
 // Functions=0
 // Functions Columns=0
+
 	
 }

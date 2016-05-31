@@ -14,7 +14,7 @@ import org.tahom.repository.type.model.Surname;
 
 @Pojo
 @SuppressWarnings("all")
-public abstract class Player implements Serializable {
+public class Player implements Serializable {
   private final static long serialVersionUID = 1L;
   
   public final static String ORDER_BY_ID = "ID";

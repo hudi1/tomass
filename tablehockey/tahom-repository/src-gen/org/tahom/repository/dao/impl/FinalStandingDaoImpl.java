@@ -10,7 +10,6 @@ import org.sqlproc.engine.SqlSession;
 import org.sqlproc.engine.SqlSessionFactory;
 import org.tahom.repository.dao.FinalStandingDao;
 import org.tahom.repository.model.FinalStanding;
-import org.tahom.repository.model.User;
 
 @SuppressWarnings("all")
 public class FinalStandingDaoImpl implements FinalStandingDao {
@@ -61,7 +60,7 @@ public class FinalStandingDaoImpl implements FinalStandingDao {
     	logger.trace("sql get: " + finalStanding + " " + sqlControl);
     }
     org.sqlproc.engine.SqlCrudEngine sqlGetEngineFinalStanding = sqlEngineFactory.getCheckedCrudEngine("GET_FINAL_STANDING");
-    sqlControl = getMoreResultClasses(finalStanding, sqlControl);
+    //sqlControl = getMoreResultClasses(finalStanding, sqlControl);
     FinalStanding finalStandingGot = sqlGetEngineFinalStanding.get(sqlSession, FinalStanding.class, finalStanding, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql get finalStanding result: " + finalStandingGot);
@@ -134,7 +133,7 @@ public class FinalStandingDaoImpl implements FinalStandingDao {
     	logger.trace("sql list finalStanding: " + finalStanding + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineFinalStanding = sqlEngineFactory.getCheckedQueryEngine("SELECT_FINAL_STANDING");
-    sqlControl = getMoreResultClasses(finalStanding, sqlControl);
+    //sqlControl = getMoreResultClasses(finalStanding, sqlControl);
     List<FinalStanding> finalStandingList = sqlEngineFinalStanding.query(sqlSession, FinalStanding.class, finalStanding, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql list finalStanding size: " + ((finalStandingList != null) ? finalStandingList.size() : "null"));
@@ -159,7 +158,7 @@ public class FinalStandingDaoImpl implements FinalStandingDao {
     	logger.trace("sql query finalStanding: " + finalStanding + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineFinalStanding = sqlEngineFactory.getCheckedQueryEngine("SELECT_FINAL_STANDING");
-    sqlControl = getMoreResultClasses(finalStanding, sqlControl);
+    //sqlControl = getMoreResultClasses(finalStanding, sqlControl);
     int rownums = sqlEngineFinalStanding.query(sqlSession, FinalStanding.class, finalStanding, sqlControl, sqlRowProcessor);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql query finalStanding size: " + rownums);
@@ -187,7 +186,7 @@ public class FinalStandingDaoImpl implements FinalStandingDao {
     	logger.trace("sql list finalStanding: " + finalStanding + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineFinalStanding = sqlEngineFactory.getCheckedQueryEngine("SELECT_FINAL_STANDING");
-    sqlControl = getMoreResultClasses(finalStanding, sqlControl);
+    //sqlControl = getMoreResultClasses(finalStanding, sqlControl);
     finalStanding.setOnlyIds_(true);
     java.util.Set<String> initAssociations = finalStanding.getInitAssociations_();
     finalStanding.setInitAssociations_(new java.util.HashSet<String>());
@@ -235,7 +234,7 @@ public class FinalStandingDaoImpl implements FinalStandingDao {
     	logger.trace("count finalStanding: " + finalStanding + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineFinalStanding = sqlEngineFactory.getCheckedQueryEngine("SELECT_FINAL_STANDING");
-    sqlControl = getMoreResultClasses(finalStanding, sqlControl);
+    //sqlControl = getMoreResultClasses(finalStanding, sqlControl);
     int count = sqlEngineFinalStanding.queryCount(sqlSession, finalStanding, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("count: " + count);
@@ -253,21 +252,5 @@ public class FinalStandingDaoImpl implements FinalStandingDao {
   
   public int count(final FinalStanding finalStanding) {
     return count(finalStanding, null);
-  }
-  
-  public SqlControl getMoreResultClasses(final FinalStanding finalStanding, SqlControl sqlControl) {
-    if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
-    	return sqlControl;
-    java.util.Map<String, Class<?>> moreResultClasses = null;
-    if (finalStanding != null && finalStanding.toInit_(FinalStanding.Association.player.name())) {
-    	if (moreResultClasses == null)
-    		moreResultClasses = new java.util.HashMap<String, Class<?>>();
-    	moreResultClasses.put("user", User.class);
-    }
-    if (moreResultClasses != null) {
-    	sqlControl = new org.sqlproc.engine.impl.SqlStandardControl(sqlControl);
-    	((org.sqlproc.engine.impl.SqlStandardControl) sqlControl).setMoreResultClasses(moreResultClasses);
-    }
-    return sqlControl;
   }
 }

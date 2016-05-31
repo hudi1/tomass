@@ -1,6 +1,8 @@
 package org.tahom.repository.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -87,6 +89,111 @@ public class Tournament implements Serializable {
   
   public Tournament _setPlayingFormat(final PlayingFormat playingFormat) {
     this.playingFormat = playingFormat;
+    return this;
+  }
+  
+  private String country;
+  
+  public String getCountry() {
+    return this.country;
+  }
+  
+  public void setCountry(final String country) {
+    this.country = country;
+  }
+  
+  public Tournament _setCountry(final String country) {
+    this.country = country;
+    return this;
+  }
+  
+  private String city;
+  
+  public String getCity() {
+    return this.city;
+  }
+  
+  public void setCity(final String city) {
+    this.city = city;
+  }
+  
+  public Tournament _setCity(final String city) {
+    this.city = city;
+    return this;
+  }
+  
+  private String address;
+  
+  public String getAddress() {
+    return this.address;
+  }
+  
+  public void setAddress(final String address) {
+    this.address = address;
+  }
+  
+  public Tournament _setAddress(final String address) {
+    this.address = address;
+    return this;
+  }
+  
+  private byte[] logo;
+  
+  public byte[] getLogo() {
+    return this.logo;
+  }
+  
+  public void setLogo(final byte[] logo) {
+    this.logo = logo;
+  }
+  
+  public Tournament _setLogo(final byte[] logo) {
+    this.logo = logo;
+    return this;
+  }
+  
+  private Timestamp registrationFrom;
+  
+  public Timestamp getRegistrationFrom() {
+    return this.registrationFrom;
+  }
+  
+  public void setRegistrationFrom(final Timestamp registrationFrom) {
+    this.registrationFrom = registrationFrom;
+  }
+  
+  public Tournament _setRegistrationFrom(final Timestamp registrationFrom) {
+    this.registrationFrom = registrationFrom;
+    return this;
+  }
+  
+  private Date date;
+  
+  public Date getDate() {
+    return this.date;
+  }
+  
+  public void setDate(final Date date) {
+    this.date = date;
+  }
+  
+  public Tournament _setDate(final Date date) {
+    this.date = date;
+    return this;
+  }
+  
+  private Timestamp registrationTo;
+  
+  public Timestamp getRegistrationTo() {
+    return this.registrationTo;
+  }
+  
+  public void setRegistrationTo(final Timestamp registrationTo) {
+    this.registrationTo = registrationTo;
+  }
+  
+  public Tournament _setRegistrationTo(final Timestamp registrationTo) {
+    this.registrationTo = registrationTo;
     return this;
   }
   
@@ -196,15 +303,29 @@ public class Tournament implements Serializable {
   
   @Override
   public String toString() {
-    return "Tournament [id=" + id + ", name=" + name + ", status=" + status + ", visible=" + visible + "]";
+    return "Tournament [id=" + id + ", name=" + name + ", status=" + status + ", country=" + country + ", city=" + city + ", address=" + address + ", logo=" + logo + ", registrationFrom=" + registrationFrom + ", date=" + date + ", registrationTo=" + registrationTo + ", visible=" + visible + "]";
   }
   
   public String toStringFull() {
-    return "Tournament [id=" + id + ", name=" + name + ", status=" + status + ", playingFormat=" + playingFormat + ", visible=" + visible + ", finalStandings=" + finalStandings + ", stages=" + stages + ", tournamentRatings=" + tournamentRatings + ", onlyIds_=" + onlyIds_ + ", ids_=" + ids_ + "]";
+    return "Tournament [id=" + id + ", name=" + name + ", status=" + status + ", playingFormat=" + playingFormat + ", country=" + country + ", city=" + city + ", address=" + address + ", logo=" + logo + ", registrationFrom=" + registrationFrom + ", date=" + date + ", registrationTo=" + registrationTo + ", visible=" + visible + ", finalStandings=" + finalStandings + ", stages=" + stages + ", tournamentRatings=" + tournamentRatings + ", onlyIds_=" + onlyIds_ + ", ids_=" + ids_ + "]";
   }
   
   public enum Attribute {
-    playingFormat;
+    playingFormat,
+    
+    country,
+    
+    city,
+    
+    address,
+    
+    logo,
+    
+    registrationFrom,
+    
+    date,
+    
+    registrationTo;
   }
   
   private Set<String> nullValues_ =  new java.util.HashSet<String>();
@@ -375,6 +496,20 @@ public class Tournament implements Serializable {
     status,
     
     playingFormat,
+    
+    country,
+    
+    city,
+    
+    address,
+    
+    logo,
+    
+    registrationFrom,
+    
+    date,
+    
+    registrationTo,
     
     visible,
     

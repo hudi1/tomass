@@ -71,6 +71,4 @@ public interface FinalStandingDao {
   public int count(final SqlSession sqlSession, final FinalStanding finalStanding);
   
   public int count(final FinalStanding finalStanding);
-  
-  public SqlControl getMoreResultClasses(final FinalStanding finalStanding, SqlControl sqlControl);
 }

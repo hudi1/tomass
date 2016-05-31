@@ -16,6 +16,8 @@ pojogen-generate-operators;
 pojogen-inherit-many-to-one USER PLAYER_ID->PLAYER->ID;
 // POJO
 //pojogen-inherit-many-to-one user PLAYER_ID->player->ID;
+pojogen-not-abstract-tables player;
+
 pojogen-ignore-one-to-many participant ID->game->AWAY_PARTICIPANT_ID;
 pojogen-ignore-one-to-many participant ID->play_off_game->AWAY_PARTICIPANT_ID;
 pojogen-ignore-one-to-many participant ID->game->AWAY_PARTICIPANT_ID;
