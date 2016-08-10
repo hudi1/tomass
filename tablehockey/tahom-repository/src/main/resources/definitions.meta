@@ -3,38 +3,45 @@ database-is-online;
 generate-from-to;
 validate-resources - "statements.meta" entity.model dao.model;
 database-jdbc-driver   com.mysql.jdbc.Driver;
-database-has-url   "jdbc:mysql://localhost/tablehockey";
+database-has-url   "jdbc:mysql://localhost/tablehockey?useSSL=false";
 database-login-username   root;
 database-login-password   root;
+database-active-schema tablehockey;
 
 pojogen-generate-wrappers;
 
-pojogen-make-it-final;
+//pojogen-make-it-final;
 pojogen-generate-operators;
 
-//DAO
-pojogen-inherit-many-to-one USER PLAYER_ID->PLAYER->ID;
-// POJO
-//pojogen-inherit-many-to-one user PLAYER_ID->player->ID;
+pojogen-inherit-many-to-one user PLAYER_ID->player->ID;
 pojogen-not-abstract-tables player;
 
-pojogen-ignore-one-to-many participant ID->game->AWAY_PARTICIPANT_ID;
+pojogen-create-many-to-one CUSTOM_PLAYER PLAYER_ID->player->ID;
+
+pojogen-types-sqltypes TIMESTAMP(19)->java.time.LocalDateTime DATE(10)->java.time.LocalDate;
+metagen-sqltype-meta-type "TIMESTAMP(19)"->localdatetime "DATE(10)"->localdate;
+pojogen-table-many-to-many tournament_admin PLAYER_ID->tournament->ADMINISTERED_TOURNAMENT;
+pojogen-table-many-to-many tournament_admin ID->user->ADMIN;
+pojogen-table-many-to-many tournament_rating ID->tournament->TOURNAMENT;
+
+pojogen-ignore-one-to-many group_participant ID->game->AWAY_GROUP_PARTICIPANT_ID;
+pojogen-ignore-one-to-many player ID->matchs->AWAY_PLAYER_ID;
+pojogen-ignore-one-to-many player ID->matchs->HOME_PLAYER_ID;
+pojogen-ignore-one-to-many stage ID->stage->COPY_RESULT_STAGE_ID;
+pojogen-ignore-one-to-many playing_format ID->tournament->PLAYING_FORMAT_ID;
 pojogen-ignore-one-to-many participant ID->play_off_game->AWAY_PARTICIPANT_ID;
-pojogen-ignore-one-to-many participant ID->game->AWAY_PARTICIPANT_ID;
-pojogen-ignore-one-to-many player ID->PLAY_OFF_GAME;
-pojogen-ignore-one-to-many player ID->FINAL_STANDING->PLAYER_ID;
-pojogen-table-many-to-many tournament_admin ID->TOURNAMENT->USER;
+pojogen-ignore-one-to-many participant ID->play_off_game->HOME_PARTICIPANT_ID;
 
 pojogen-implements-interfaces java.io.Serializable;
 pojogen-generate-methods equals toString toInit isDef;
 
-pojogen-types-for-columns participant SCORE->org.tahom.repository.type.model.Score;
+pojogen-types-for-columns group_participant SCORE->org.tahom.repository.type.model.Score;
 pojogen-types-for-columns game RESULT->org.tahom.repository.type.model.Results;
 pojogen-types-for-columns play_off_game RESULT->org.tahom.repository.type.model.Results;
 pojogen-types-for-columns player SURNAME->org.tahom.repository.type.model.Surname;
 pojogen-types-for-columns ithf_tournament SERIES->org.tahom.repository.type.model.Series;
 
-metagen-column-meta-type participant SCORE->score;
+metagen-column-meta-type group_participant SCORE->score;
 metagen-column-meta-type game RESULT->result;
 metagen-column-meta-type play_off_game RESULT->result;
 metagen-column-meta-type player SURNAME->surname;
@@ -43,12 +50,24 @@ metagen-column-meta-type ithf_tournament SERIES->series;
 pojogen-rename-columns groups_TYPE B->BASIC F->FINAL P->PLAY_OFF;
 pojogen-rename-columns groups_PLAY_OFF_TYPE F->FINAL L->LOWER C->CROSS;
 
-pojogen-create-columns participant TEMP->boolean;
+pojogen-create-columns group_participant TEMP->boolean;
 
-pojogen-inherit-many-to-one play_off_game GAME_ID->game->ID;
-pojogen-inherit-many-to-one wch_qualification PLAYER_ID->player->ID;
-
-metagen-generate-sequences;
+//metagen-generate-sequences;
+metagen-table-sequence final_standing FINAL_STANDING;
+metagen-table-sequence game GAME;
+metagen-table-sequence groups GROUPS;
+metagen-table-sequence ithf_tournament ITHF_TOURNAMENT;
+metagen-table-sequence group_participant GROUP_PARTICIPANT;
+metagen-table-sequence matchs MATCHS;
+metagen-table-sequence participant PARTICIPANT;
+metagen-table-sequence play_off_game PLAY_OFF_GAME;
+metagen-table-sequence player PLAYER;
+metagen-table-sequence playing_format PLAYING_FORMAT;
+metagen-table-sequence rating RATING;
+metagen-table-sequence stage STAGE;
+metagen-table-sequence tournament TOURNAMENT;
+metagen-table-sequence tournament_admin TOURNAMENT_ADMIN;
+metagen-table-sequence tournament_rating TOURNAMENT_RATING;
 
 pojogen-enum-for-check-constraints GameStatus game_STATUS play_off_game_STATUS;
 
@@ -61,6 +80,8 @@ is-table finalStanding final_standing;
 is-table game game;
 is-table groups groups;
 is-table ithfTournament ithf_tournament;
+is-table groupParticipant group_participant;
+is-table matchs matchs;
 is-table participant participant;
 is-table playOffGame play_off_game;
 is-table player player;
@@ -78,6 +99,8 @@ is-pojo Game org.tahom.repository.model.Game;
 is-pojo Groups org.tahom.repository.model.Groups;
 is-pojo IthfTournament org.tahom.repository.model.IthfTournament;
 is-pojo Participant org.tahom.repository.model.Participant;
+is-pojo GroupParticipant org.tahom.repository.model.GroupParticipant;
+is-pojo Matchs org.tahom.repository.model.Matchs;
 is-pojo PlayOffGame org.tahom.repository.model.PlayOffGame;
 is-pojo Player org.tahom.repository.model.Player;
 is-pojo PlayingFormat org.tahom.repository.model.PlayingFormat;
@@ -92,7 +115,6 @@ is-pojo TournamentAdmin org.tahom.repository.model.TournamentAdmin;
 is-pojo TournamentRating org.tahom.repository.model.TournamentRating;
 is-pojo User org.tahom.repository.model.User;
 
-
-//database-debug-level TRACE;
-//pojogen-debug-level TRACE;
+database-debug-level TRACE;
+pojogen-debug-level TRACE;
 metagen-debug-level TRACE;

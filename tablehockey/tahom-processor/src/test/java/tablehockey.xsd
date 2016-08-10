@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="tablehockey" targetNamespace="tablehockey"
+	xmlns:la="http://lightair.sourceforge.net/">
+	<xsd:import namespace="http://lightair.sourceforge.net/" schemaLocation="light-air-types.xsd" />
+	<xsd:element name="final_standing" type="final_standing__type" />
+	<xsd:element name="game" type="game__type" />
+	<xsd:element name="group_participant" type="group_participant__type" />
+	<xsd:element name="groups" type="groups__type" />
+	<xsd:element name="ithf_tournament" type="ithf_tournament__type" />
+	<xsd:element name="matchs" type="matchs__type" />
+	<xsd:element name="participant" type="participant__type" />
+	<xsd:element name="play_off_game" type="play_off_game__type" />
+	<xsd:element name="player" type="player__type" />
+	<xsd:element name="playing_format" type="playing_format__type" />
+	<xsd:element name="rating" type="rating__type" />
+	<xsd:element name="rating_points" type="rating_points__type" />
+	<xsd:element name="stage" type="stage__type" />
+	<xsd:element name="tournament" type="tournament__type" />
+	<xsd:element name="tournament_admin" type="tournament_admin__type" />
+	<xsd:element name="tournament_rating" type="tournament_rating__type" />
+	<xsd:element name="user" type="user__type" />
+	<xsd:complexType name="final_standing__type">
+		<xsd:attribute name="final_rank" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="participant_id" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="game__type">
+		<xsd:attribute name="away_group_participant_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="home_group_participant_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="result" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="status" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="group_participant__type">
+		<xsd:attribute name="group_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="participant_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="points" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="rank" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="score" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="secondary_rank" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="groups__type">
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="name" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="stage_id" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="ithf_tournament__type">
+		<xsd:attribute name="date" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="name" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="player_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="points" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="rank" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="series" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="matchs__type">
+		<xsd:attribute name="away_player_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="game_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="group_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="hockey" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="home_player_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="round" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="participant__type">
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="player_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="tournament_id" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="play_off_game__type">
+		<xsd:attribute name="away_participant_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="home_participant_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="position" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="result" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="stage_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="status" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="player__type">
+		<xsd:attribute name="city" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="club" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="country" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="date_of_birth" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="gender" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="ithf_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="name" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="name_ascii" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="nickname" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="surname" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="surname_ascii" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="verification" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="world_ranking" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="playing_format__type">
+		<xsd:attribute name="description" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="final_promoting" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="lower_promoting" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="min_players_in_group" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="name" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="play_off_final" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="play_off_lower" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="sort_type" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="win_points" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="rating__type">
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="rating_points_id" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="rating_points__type">
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="name" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="points" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="rank" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="stage__type">
+		<xsd:attribute name="copy_result_stage_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="name" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="number_of_hockey" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="sequence" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="status" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="tournament_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="type" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="win_points" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="tournament__type">
+		<xsd:attribute name="address" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="city" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="country" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="logo" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="name" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="playing_format_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="registration_from" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="registration_to" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="status" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="tournament_date" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="visible" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="tournament_admin__type">
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="tournament_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="user_id" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="tournament_rating__type">
+		<xsd:attribute name="id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="rating_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="tournament_id" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+	<xsd:complexType name="user__type">
+		<xsd:attribute name="email" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="login" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="password" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="phone" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="player_id" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="role" use="optional" type="la:ColumnType" />
+		<xsd:attribute name="validity" use="optional" type="la:ColumnType" />
+	</xsd:complexType>
+</xsd:schema>

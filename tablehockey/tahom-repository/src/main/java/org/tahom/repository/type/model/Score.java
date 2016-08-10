@@ -33,6 +33,10 @@ public class Score implements Serializable {
         this.rightSide = rightSide;
     }
 
+    public static Score createDefaultScore() {
+        return new Score(0, 0);
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

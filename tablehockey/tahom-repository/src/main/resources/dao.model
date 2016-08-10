@@ -1,7 +1,6 @@
 #Implementation(impl)
 package org.tahom.repository.dao {
 
-
     #CRUD(org.tahom.repository.model.FinalStanding) #Query(org.tahom.repository.model.FinalStanding)
     #Dao FinalStandingDao {
     }
@@ -10,12 +9,20 @@ package org.tahom.repository.dao {
     #Dao GameDao {
     }
 
+    #CRUD(org.tahom.repository.model.GroupParticipant) #Query(org.tahom.repository.model.GroupParticipant)
+    #Dao GroupParticipantDao {
+    }
+
     #CRUD(org.tahom.repository.model.Groups) #Query(org.tahom.repository.model.Groups)
     #Dao GroupsDao {
     }
 
     #CRUD(org.tahom.repository.model.IthfTournament) #Query(org.tahom.repository.model.IthfTournament)
     #Dao IthfTournamentDao {
+    }
+
+    #CRUD(org.tahom.repository.model.Matchs) #Query(org.tahom.repository.model.Matchs)
+    #Dao MatchsDao {
     }
 
     #CRUD(org.tahom.repository.model.Participant) #Query(org.tahom.repository.model.Participant)
@@ -61,19 +68,4 @@ package org.tahom.repository.dao {
     #CRUD(org.tahom.repository.model.User) #Query(org.tahom.repository.model.User)
     #Dao UserDao {
     }
-
-// Model statistics
-// Tables=15
-// Columns=99
-// Primary Keys=15
-// Exports=20
-// Imports=20
-// Indexes=43
-// Check Constraints=42
-// Procedures=0
-// Procedures Columns=0
-// Functions=0
-// Functions Columns=0
-
-
 }

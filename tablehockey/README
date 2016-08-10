@@ -1,0 +1,5 @@
+To generate code coverage report execute this commands:
+mvn clean install -P itest-local
+mvn site
+and then open file:
+${project.parent.folder}/tablehockey/tahom-processor/target/site/cobertura/index.html

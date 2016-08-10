@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../dataset.xsd">
+
+    <final_standing />
+    <game />
+    <group_participant />
+    <groups />
+    <ithf_tournament />
+    <play_off_game />
+    <player />
+    <playing_format />
+    <rating />
+    <rating_points />
+    <stage />
+    <tournament />
+    <tournament_admin />
+    <participant />
+    <tournament_rating />
+    <user />
+
+</dataset>

@@ -56,14 +56,6 @@ public interface PlayingFormatDao {
   
   public int query(final PlayingFormat playingFormat, final SqlRowProcessor<PlayingFormat> sqlRowProcessor);
   
-  public List<PlayingFormat> listFromTo(final SqlSession sqlSession, final PlayingFormat playingFormat, SqlControl sqlControl);
-  
-  public List<PlayingFormat> listFromTo(final PlayingFormat playingFormat, SqlControl sqlControl);
-  
-  public List<PlayingFormat> listFromTo(final SqlSession sqlSession, final PlayingFormat playingFormat);
-  
-  public List<PlayingFormat> listFromTo(final PlayingFormat playingFormat);
-  
   public int count(final SqlSession sqlSession, final PlayingFormat playingFormat, SqlControl sqlControl);
   
   public int count(final PlayingFormat playingFormat, SqlControl sqlControl);

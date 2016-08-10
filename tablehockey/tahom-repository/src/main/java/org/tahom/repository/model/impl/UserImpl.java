@@ -14,7 +14,6 @@ public class UserImpl extends User {
 		super.setCountry(user.getCountry());
 		super.setDateOfBirth(user.getDateOfBirth());
 		super.setEmail(user.getEmail());
-		super.setFinalStandings(user.getFinalStandings());
 		super.setGender(user.getGender());
 		super.setId(user.getId());
 		super.setIthfId(user.getIthfId());
@@ -23,7 +22,6 @@ public class UserImpl extends User {
 		super.setName(user.getName());
 		super.setNameAscii(user.getNameAscii());
 		super.setNickname(user.getNickname());
-		super.setParticipants(user.getParticipants());
 		super.setPassword(user.getPassword());
 		super.setPhone(user.getPhone());
 		super.setRole(user.getRole());

@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../dataset.xsd">
+
+    <tournament id="1" name="@any" status="RO" playing_format_id="@null" country="@any" city="@any" address="@any"
+        logo="@null" registration_from="@timestamp" tournament_date="@date" registration_to="@timestamp" visible="true" />
+
+    <stage copy_result_stage_id="@null" id="1" name="@any" number_of_hockey="@any" sequence="@any" status="NS"
+        tournament_id="1" type="RR" win_points="@any" />
+
+    <player id="1" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="2" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="3" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="4" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="5" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="6" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="7" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+
+    <groups id="1" name="@any" stage_id="1" />
+    <groups id="2" name="@any" stage_id="1" />
+
+    <participant id="1" player_id="1" tournament_id="1" />
+    <participant id="2" player_id="2" tournament_id="1" />
+    <participant id="3" player_id="3" tournament_id="1" />
+    <participant id="4" player_id="4" tournament_id="1" />
+    <participant id="5" player_id="5" tournament_id="1" />
+    <participant id="6" player_id="6" tournament_id="1" />
+    <participant id="7" player_id="7" tournament_id="1" />
+
+    <group_participant id="1" group_id="1" participant_id="1" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="2" group_id="1" participant_id="2" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="3" group_id="1" participant_id="3" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="4" group_id="1" participant_id="4" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="5" group_id="1" participant_id="5" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="6" group_id="1" participant_id="6" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+        
+    <group_participant id="11" group_id="2" participant_id="1" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="12" group_id="2" participant_id="2" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="13" group_id="2" participant_id="3" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="14" group_id="2" participant_id="4" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="15" group_id="2" participant_id="5" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="16" group_id="2" participant_id="6" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />
+    <group_participant id="17" group_id="2" participant_id="7" points="@any" rank="@null" score="@any"
+        secondary_rank="@null" />          
+
+    <game id="1" home_group_participant_id="1" away_group_participant_id="2" result="@null" status="@null" />
+    <game id="2" home_group_participant_id="2" away_group_participant_id="1" result="@null" status="@null" />
+
+    <game id="3" home_group_participant_id="1" away_group_participant_id="3" result="@null" status="@null" />
+    <game id="4" home_group_participant_id="3" away_group_participant_id="1" result="@null" status="@null" />
+
+    <game id="5" home_group_participant_id="1" away_group_participant_id="4" result="@null" status="@null" />
+    <game id="6" home_group_participant_id="4" away_group_participant_id="1" result="@null" status="@null" />
+
+    <game id="7" home_group_participant_id="1" away_group_participant_id="5" result="@null" status="@null" />
+    <game id="8" home_group_participant_id="5" away_group_participant_id="1" result="@null" status="@null" />
+
+    <game id="9" home_group_participant_id="1" away_group_participant_id="6" result="@null" status="@null" />
+    <game id="10" home_group_participant_id="6" away_group_participant_id="1" result="@null" status="@null" />
+
+    <game id="11" home_group_participant_id="2" away_group_participant_id="3" result="@null" status="@null" />
+    <game id="12" home_group_participant_id="3" away_group_participant_id="2" result="@null" status="@null" />
+
+    <game id="13" home_group_participant_id="2" away_group_participant_id="4" result="@null" status="@null" />
+    <game id="14" home_group_participant_id="4" away_group_participant_id="2" result="@null" status="@null" />
+
+    <game id="15" home_group_participant_id="2" away_group_participant_id="5" result="@null" status="@null" />
+    <game id="16" home_group_participant_id="5" away_group_participant_id="2" result="@null" status="@null" />
+
+    <game id="17" home_group_participant_id="2" away_group_participant_id="6" result="@null" status="@null" />
+    <game id="18" home_group_participant_id="6" away_group_participant_id="2" result="@null" status="@null" />
+
+    <game id="19" home_group_participant_id="3" away_group_participant_id="4" result="@null" status="@null" />
+    <game id="20" home_group_participant_id="4" away_group_participant_id="3" result="@null" status="@null" />
+
+    <game id="21" home_group_participant_id="3" away_group_participant_id="5" result="@null" status="@null" />
+    <game id="22" home_group_participant_id="5" away_group_participant_id="3" result="@null" status="@null" />
+
+    <game id="23" home_group_participant_id="3" away_group_participant_id="6" result="@null" status="@null" />
+    <game id="24" home_group_participant_id="6" away_group_participant_id="3" result="@null" status="@null" />
+
+    <game id="25" home_group_participant_id="4" away_group_participant_id="5" result="@null" status="@null" />
+    <game id="26" home_group_participant_id="5" away_group_participant_id="4" result="@null" status="@null" />
+
+    <game id="27" home_group_participant_id="4" away_group_participant_id="6" result="@null" status="@null" />
+    <game id="28" home_group_participant_id="6" away_group_participant_id="4" result="@null" status="@null" />
+
+    <game id="29" home_group_participant_id="5" away_group_participant_id="6" result="@null" status="@null" />
+    <game id="30" home_group_participant_id="6" away_group_participant_id="5" result="@null" status="@null" />
+    
+    <game id="101" home_group_participant_id="11" away_group_participant_id="12" result="@null" status="@null" />
+    <game id="102" home_group_participant_id="12" away_group_participant_id="11" result="@null" status="@null" />
+
+    <game id="103" home_group_participant_id="11" away_group_participant_id="13" result="@null" status="@null" />
+    <game id="104" home_group_participant_id="13" away_group_participant_id="11" result="@null" status="@null" />
+
+    <game id="105" home_group_participant_id="11" away_group_participant_id="14" result="@null" status="@null" />
+    <game id="106" home_group_participant_id="14" away_group_participant_id="11" result="@null" status="@null" />
+
+    <game id="107" home_group_participant_id="11" away_group_participant_id="15" result="@null" status="@null" />
+    <game id="108" home_group_participant_id="15" away_group_participant_id="11" result="@null" status="@null" />
+
+    <game id="109" home_group_participant_id="11" away_group_participant_id="16" result="@null" status="@null" />
+    <game id="110" home_group_participant_id="16" away_group_participant_id="11" result="@null" status="@null" />
+
+    <game id="111" home_group_participant_id="12" away_group_participant_id="13" result="@null" status="@null" />
+    <game id="112" home_group_participant_id="13" away_group_participant_id="12" result="@null" status="@null" />
+
+    <game id="113" home_group_participant_id="12" away_group_participant_id="14" result="@null" status="@null" />
+    <game id="114" home_group_participant_id="14" away_group_participant_id="12" result="@null" status="@null" />
+
+    <game id="115" home_group_participant_id="12" away_group_participant_id="15" result="@null" status="@null" />
+    <game id="116" home_group_participant_id="15" away_group_participant_id="12" result="@null" status="@null" />
+
+    <game id="117" home_group_participant_id="12" away_group_participant_id="16" result="@null" status="@null" />
+    <game id="118" home_group_participant_id="16" away_group_participant_id="12" result="@null" status="@null" />
+
+    <game id="119" home_group_participant_id="13" away_group_participant_id="14" result="@null" status="@null" />
+    <game id="120" home_group_participant_id="14" away_group_participant_id="13" result="@null" status="@null" />
+
+    <game id="121" home_group_participant_id="13" away_group_participant_id="15" result="@null" status="@null" />
+    <game id="122" home_group_participant_id="15" away_group_participant_id="13" result="@null" status="@null" />
+
+    <game id="123" home_group_participant_id="13" away_group_participant_id="16" result="@null" status="@null" />
+    <game id="124" home_group_participant_id="16" away_group_participant_id="13" result="@null" status="@null" />
+
+    <game id="125" home_group_participant_id="14" away_group_participant_id="15" result="@null" status="@null" />
+    <game id="126" home_group_participant_id="15" away_group_participant_id="14" result="@null" status="@null" />
+
+    <game id="127" home_group_participant_id="14" away_group_participant_id="16" result="@null" status="@null" />
+    <game id="128" home_group_participant_id="16" away_group_participant_id="14" result="@null" status="@null" />
+
+    <game id="129" home_group_participant_id="15" away_group_participant_id="16" result="@null" status="@null" />
+    <game id="130" home_group_participant_id="16" away_group_participant_id="15" result="@null" status="@null" />
+    
+    <game id="131" home_group_participant_id="11" away_group_participant_id="17" result="@null" status="@null" />
+    <game id="132" home_group_participant_id="17" away_group_participant_id="11" result="@null" status="@null" />
+    
+    <game id="133" home_group_participant_id="12" away_group_participant_id="17" result="@null" status="@null" />
+    <game id="134" home_group_participant_id="17" away_group_participant_id="12" result="@null" status="@null" />
+    
+    <game id="135" home_group_participant_id="13" away_group_participant_id="17" result="@null" status="@null" />
+    <game id="136" home_group_participant_id="17" away_group_participant_id="13" result="@null" status="@null" />
+    
+    <game id="137" home_group_participant_id="14" away_group_participant_id="17" result="@null" status="@null" />
+    <game id="138" home_group_participant_id="17" away_group_participant_id="14" result="@null" status="@null" />
+    
+    <game id="139" home_group_participant_id="15" away_group_participant_id="17" result="@null" status="@null" />
+    <game id="140" home_group_participant_id="17" away_group_participant_id="15" result="@null" status="@null" />
+    
+    <game id="141" home_group_participant_id="16" away_group_participant_id="17" result="@null" status="@null" />
+    <game id="142" home_group_participant_id="17" away_group_participant_id="16" result="@null" status="@null" />
+
+    <matchs id="@any" home_player_id="1" away_player_id="2" game_id="1" group_id="1" round="1" hockey="2" />
+    <matchs id="@any" home_player_id="3" away_player_id="6" game_id="23" group_id="1" round="1" hockey="1" />
+    <matchs id="@any" home_player_id="4" away_player_id="5" game_id="25" group_id="1" round="1" hockey="3" />
+    <matchs id="@any" home_player_id="1" away_player_id="4" game_id="5" group_id="1" round="2" hockey="3" />
+    <matchs id="@any" home_player_id="5" away_player_id="3" game_id="22" group_id="1" round="2" hockey="2" />
+    <matchs id="@any" home_player_id="6" away_player_id="2" game_id="18" group_id="1" round="2" hockey="1" />
+    <matchs id="@any" home_player_id="6" away_player_id="1" game_id="10" group_id="1" round="3" hockey="3" />
+    <matchs id="@any" home_player_id="2" away_player_id="5" game_id="15" group_id="1" round="3" hockey="2" />
+    <matchs id="@any" home_player_id="4" away_player_id="3" game_id="20" group_id="1" round="3" hockey="1" />
+    <matchs id="@any" home_player_id="3" away_player_id="1" game_id="4" group_id="1" round="4" hockey="2" />
+    <matchs id="@any" home_player_id="2" away_player_id="4" game_id="13" group_id="1" round="4" hockey="1" />
+    <matchs id="@any" home_player_id="5" away_player_id="6" game_id="29" group_id="1" round="4" hockey="3" />
+    <matchs id="@any" home_player_id="1" away_player_id="5" game_id="7" group_id="1" round="5" hockey="1" />
+    <matchs id="@any" home_player_id="6" away_player_id="4" game_id="28" group_id="1" round="5" hockey="2" />
+    <matchs id="@any" home_player_id="2" away_player_id="3" game_id="11" group_id="1" round="5" hockey="3" />
+
+</dataset>

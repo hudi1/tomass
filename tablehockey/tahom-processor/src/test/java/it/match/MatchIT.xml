@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../dataset.xsd">
+
+    <tournament id="1" name="@auto" status="RO" playing_format_id="@null" country="@auto" city="@auto"
+        address="@auto" logo="@null" registration_from="@timestamp" tournament_date="@date" registration_to="@timestamp"
+        visible="true" />
+
+    <stage copy_result_stage_id="@null" id="1" name="@auto" number_of_hockey="@auto" sequence="@auto" status="NS"
+        tournament_id="1" type="RR" win_points="@auto" />
+
+    <player id="1" city="@auto" club="@auto" country="@auto" date_of_birth="@date" gender="M" name_ascii="@auto"
+        name="@auto" nickname="@auto" surname_ascii="@auto" surname="@auto" verification="1" world_ranking="@auto"
+        ithf_id="@auto" />
+    <player id="2" city="@auto" club="@auto" country="@auto" date_of_birth="@date" gender="M" name_ascii="@auto"
+        name="@auto" nickname="@auto" surname_ascii="@auto" surname="@auto" verification="1" world_ranking="@auto"
+        ithf_id="@auto" />
+
+    <groups id="1" name="@auto" stage_id="1" />
+    <groups id="2" name="@auto" stage_id="1" />
+
+    <participant id="1" player_id="1" tournament_id="1" />
+    <participant id="2" player_id="2" tournament_id="1" />
+
+    <group_participant id="1" group_id="1" participant_id="1" points="0" rank="@null" score="0:0"
+        secondary_rank="@null" />
+    <group_participant id="2" group_id="1" participant_id="2" points="0" rank="@null" score="0:0"
+        secondary_rank="@null" />
+
+    <game id="1" home_group_participant_id="1" away_group_participant_id="2" result="@null" status="@null" />
+    <game id="2" home_group_participant_id="2" away_group_participant_id="1" result="@null" status="@null" />
+
+    <matchs id="1" home_player_id="1" away_player_id="2" game_id="1" group_id="1" round="1" hockey="1" />
+
+</dataset>

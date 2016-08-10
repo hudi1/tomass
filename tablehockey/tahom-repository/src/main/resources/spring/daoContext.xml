@@ -12,15 +12,17 @@
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 
-    <bean id="gameDao" class="org.tahom.repository.dao.impl.GameExtDaoImpl" parent="dao" />
+    <bean id="gameDao" class="org.tahom.repository.dao.impl.GameDaoImpl" parent="dao" />
     <bean id="playOffGameDao" class="org.tahom.repository.dao.impl.PlayOffGameDaoImpl" parent="dao" />
     <bean id="playerDao" class="org.tahom.repository.dao.impl.PlayerExtDaoImpl" parent="dao" />
-    <bean id="participantDao" class="org.tahom.repository.dao.impl.ParticipantExtDaoImpl" parent="dao" />
-    <bean id="seasonDao" class="org.tahom.repository.dao.impl.SeasonDaoImpl" parent="dao" />
-    <bean id="groupDao" class="org.tahom.repository.dao.impl.GroupsExtDaoImpl" parent="dao" />
+    <bean id="participantDao" class="org.tahom.repository.dao.impl.ParticipantDaoImpl" parent="dao" />
+    <bean id="groupParticipantDao" class="org.tahom.repository.dao.impl.GroupParticipantDaoImpl" parent="dao" />
+    <bean id="groupDao" class="org.tahom.repository.dao.impl.GroupsDaoImpl" parent="dao" />
     <bean id="tournamentDao" class="org.tahom.repository.dao.impl.TournamentDaoImpl" parent="dao" />
     <bean id="userDao" class="org.tahom.repository.dao.impl.UserDaoImpl" parent="dao" />
-    <bean id="finalStandingDao" class="org.tahom.repository.dao.impl.FinalStandingExtDaoImp" parent="dao" />
-    <bean id="ithfTournamentDao" class="org.tahom.repository.dao.impl.IthfTournamentExtDaoImpl" parent="dao" />
+    <bean id="finalStandingDao" class="org.tahom.repository.dao.impl.FinalStandingDaoImpl" parent="dao" />
+    <bean id="ithfTournamentDao" class="org.tahom.repository.dao.impl.IthfTournamentDaoImpl" parent="dao" />
+    <bean id="stageDao" class="org.tahom.repository.dao.impl.StageDaoImpl" parent="dao" />
+    <bean id="matchsDao" class="org.tahom.repository.dao.impl.MatchsDaoImpl" parent="dao" />
 
 </beans>

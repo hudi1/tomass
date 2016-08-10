@@ -56,14 +56,6 @@ public interface TournamentRatingDao {
   
   public int query(final TournamentRating tournamentRating, final SqlRowProcessor<TournamentRating> sqlRowProcessor);
   
-  public List<TournamentRating> listFromTo(final SqlSession sqlSession, final TournamentRating tournamentRating, SqlControl sqlControl);
-  
-  public List<TournamentRating> listFromTo(final TournamentRating tournamentRating, SqlControl sqlControl);
-  
-  public List<TournamentRating> listFromTo(final SqlSession sqlSession, final TournamentRating tournamentRating);
-  
-  public List<TournamentRating> listFromTo(final TournamentRating tournamentRating);
-  
   public int count(final SqlSession sqlSession, final TournamentRating tournamentRating, SqlControl sqlControl);
   
   public int count(final TournamentRating tournamentRating, SqlControl sqlControl);

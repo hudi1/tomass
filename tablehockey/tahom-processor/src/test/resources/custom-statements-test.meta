@@ -1,0 +1,16 @@
+SEQ=PARTICIPANT(OPT)=select auto_increment from information_schema.tables where table_name = 'participant' and table_schema = 'tablehockeyTest';
+SEQ=GROUP_PARTICIPANT(OPT)=select auto_increment from information_schema.tables where table_name = 'group_participant' and table_schema = 'tablehockeyTest';
+SEQ=PLAY_OFF_GAME(OPT)=select auto_increment from information_schema.tables where table_name = 'play_off_game' and table_schema = 'tablehockeyTest';
+SEQ=GROUPS(OPT)=select auto_increment from information_schema.tables where table_name = 'groups' and table_schema = 'tablehockeyTest';
+SEQ=TOURNAMENT(OPT)=select auto_increment from information_schema.tables where table_name = 'tournament' and table_schema = 'tablehockeyTest';
+SEQ=TOURNAMENT_RATING(OPT)=select auto_increment from information_schema.tables where table_name = 'tournament_rating' and table_schema = 'tablehockeyTest';
+SEQ=STAGE(OPT)=select auto_increment from information_schema.tables where table_name = 'stage' and table_schema = 'tablehockeyTest';
+SEQ=RATING_POINTS(OPT)=select auto_increment from information_schema.tables where table_name = 'rating_points' and table_schema = 'tablehockeyTest';
+SEQ=ITHF_TOURNAMENT(OPT)=select auto_increment from information_schema.tables where table_name = 'ithf_tournament' and table_schema = 'tablehockeyTest';
+SEQ=PLAYER(OPT)=select auto_increment from information_schema.tables where table_name = 'player' and table_schema = 'tablehockeyTest';
+SEQ=GAME(OPT)=select auto_increment from information_schema.tables where table_name = 'game' and table_schema = 'tablehockeyTest';
+SEQ=RATING(OPT)=select auto_increment from information_schema.tables where table_name = 'rating' and table_schema = 'tablehockeyTest';
+SEQ=TOURNAMENT_ADMIN(OPT)=select auto_increment from information_schema.tables where table_name = 'tournament_admin' and table_schema = 'tablehockeyTest';
+SEQ=PLAYING_FORMAT(OPT)=select auto_increment from information_schema.tables where table_name = 'playing_format' and table_schema = 'tablehockeyTest';
+SEQ=FINAL_STANDING(OPT)=select auto_increment from information_schema.tables where table_name = 'final_standing' and table_schema = 'tablehockeyTest';
+SEQ=MATCHS(OPT)=select auto_increment from information_schema.tables where table_name = 'matchs' and table_schema = 'tablehockeyTest';

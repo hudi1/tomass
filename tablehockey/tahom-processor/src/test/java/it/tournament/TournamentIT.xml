@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../dataset.xsd">
+
+    <tournament id="1" name="@auto" status="RO" playing_format_id="@null" country="@auto" city="@auto" address="@auto"
+        logo="@null" registration_from="@timestamp" tournament_date="@date" registration_to="@timestamp" visible="true" />
+
+</dataset>

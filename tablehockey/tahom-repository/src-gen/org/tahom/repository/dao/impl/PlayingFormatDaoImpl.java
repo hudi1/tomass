@@ -1,7 +1,6 @@
 package org.tahom.repository.dao.impl;
 
 import java.util.List;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.sqlproc.engine.SqlControl;
 import org.sqlproc.engine.SqlEngineFactory;
@@ -176,57 +175,6 @@ public class PlayingFormatDaoImpl implements PlayingFormatDao {
   
   public int query(final PlayingFormat playingFormat, final SqlRowProcessor<PlayingFormat> sqlRowProcessor) {
     return query(playingFormat, null, sqlRowProcessor);
-  }
-  
-  public List<PlayingFormat> listFromTo(final SqlSession sqlSession, final PlayingFormat playingFormat, SqlControl sqlControl) {
-    if (sqlControl == null || sqlControl.getFirstResult() == null || sqlControl.getMaxResults() == null || playingFormat == null)
-    	return list(sqlSession, playingFormat, sqlControl);
-    
-    if (logger.isTraceEnabled()) {
-    	logger.trace("sql list playingFormat: " + playingFormat + " " + sqlControl);
-    }
-    org.sqlproc.engine.SqlQueryEngine sqlEnginePlayingFormat = sqlEngineFactory.getCheckedQueryEngine("SELECT_PLAYING_FORMAT");
-    //sqlControl = getMoreResultClasses(playingFormat, sqlControl);
-    playingFormat.setOnlyIds_(true);
-    java.util.Set<String> initAssociations = playingFormat.getInitAssociations_();
-    playingFormat.setInitAssociations_(new java.util.HashSet<String>());
-    final java.util.List<java.lang.Integer> ids_ = sqlEnginePlayingFormat.query(sqlSession, java.lang.Integer.class, playingFormat, sqlControl);
-    playingFormat.setInitAssociations_(initAssociations);
-    
-    List<PlayingFormat> playingFormatList = new java.util.ArrayList<PlayingFormat>();
-    if (!ids_.isEmpty()) {
-    	org.sqlproc.engine.impl.SqlStandardControl sqlc = new org.sqlproc.engine.impl.SqlStandardControl(sqlControl);
-    	sqlc.setFirstResult(0);
-    	sqlc.setMaxResults(0);
-    	sqlc.setOrder(null);
-    	final Map<java.lang.Integer, PlayingFormat> map = new java.util.HashMap<java.lang.Integer, PlayingFormat>();
-    	final SqlRowProcessor<PlayingFormat> sqlRowProcessor = new SqlRowProcessor<PlayingFormat>() {
-    		@Override
-    		public boolean processRow(PlayingFormat result, int rownum) throws org.sqlproc.engine.SqlRuntimeException {
-    			map.put(result.getId(), result);
-    			return true;
-    		}
-    	};
-    	sqlEnginePlayingFormat.query(sqlSession, PlayingFormat.class, new PlayingFormat()._setIds_(ids_), sqlc, sqlRowProcessor);
-    	for (java.lang.Integer id : ids_)
-    		playingFormatList.add(map.get(id));
-    }
-    if (logger.isTraceEnabled()) {
-    	logger.trace("sql list playingFormat size: " + ((playingFormatList != null) ? playingFormatList.size() : "null"));
-    }
-    return playingFormatList;
-  }
-  
-  public List<PlayingFormat> listFromTo(final PlayingFormat playingFormat, SqlControl sqlControl) {
-    return listFromTo(sqlSessionFactory.getSqlSession(), playingFormat, sqlControl);
-  }
-  
-  public List<PlayingFormat> listFromTo(final SqlSession sqlSession, final PlayingFormat playingFormat) {
-    return listFromTo(sqlSession, playingFormat, null);
-  }
-  
-  public List<PlayingFormat> listFromTo(final PlayingFormat playingFormat) {
-    return listFromTo(playingFormat, null);
   }
   
   public int count(final SqlSession sqlSession, final PlayingFormat playingFormat, SqlControl sqlControl) {

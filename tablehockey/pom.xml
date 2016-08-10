@@ -16,7 +16,7 @@
         <version.commons-codec>1.10</version.commons-codec>
         <version.commons-lang>3.4</version.commons-lang>
         <version.commons-http>4.5.1</version.commons-http>
-        <version.sql-processor>3.1.8</version.sql-processor>
+        <version.sql-processor>3.1.9-SNAPSHOT</version.sql-processor>
         <version.eclipse-xtext>2.8.2</version.eclipse-xtext>
         <version.wicket>7.1.0</version.wicket>
         <version.wicket-minis>7.1.0</version.wicket-minis>
@@ -31,7 +31,8 @@
         <version.aspectj>1.8.8</version.aspectj>
         <version.jsoup>1.8.3</version.jsoup>
         <version.xstream>1.4.8</version.xstream>
-        <version.cobertura>2.6</version.cobertura>
+        <version.cobertura>2.7</version.cobertura>
+        <version.sourceforge.cobertura>2.1.1</version.sourceforge.cobertura>
         <version.guava>19.0</version.guava>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -55,7 +56,7 @@
     <modules>
         <module>tahom-repository</module>
         <module>tahom-processor</module>
-        <module>tahom-web</module>
+        <!--module>tahom-web</module -->
     </modules>
 
     <build>
@@ -97,8 +98,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.1</version>
                     <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
+                        <source>1.8</source>
+                        <target>1.8</target>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -203,6 +204,11 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>cobertura-maven-plugin</artifactId>
                     <version>${version.cobertura}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.2.1</version>
                 </plugin>
 
                 <!-- Eclipse lifecycle mapping -->
@@ -532,13 +538,13 @@
             <dependency>
                 <groupId>org.sqlproc.model</groupId>
                 <artifactId>sqlmodel</artifactId>
-                <version>2.4.2</version>
+                <version>2.6.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.sqlproc.meta</groupId>
                 <artifactId>sqlmeta</artifactId>
-                <version>2.4.2</version>
+                <version>2.6.0</version>
                 <scope>provided</scope>
             </dependency>
             <!-- Eclipse XTEXT dependency -->
@@ -676,6 +682,19 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${version.mysql}</version>
             </dependency>
+
+            <dependency>
+                <groupId>net.sourceforge.cobertura</groupId>
+                <artifactId>cobertura</artifactId>
+                <version>${version.sourceforge.cobertura}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -722,7 +741,7 @@
             <properties>
                 <local.db.driver>com.mysql.jdbc.Driver</local.db.driver>
                 <local.db.databaseName>tablehockeyTest</local.db.databaseName>
-                <local.db.url>jdbc:mysql://localhost/${local.db.databaseName}?characterEncoding=UTF-8</local.db.url>
+                <local.db.url>jdbc:mysql://localhost/${local.db.databaseName}?useSSL=false</local.db.url>
                 <local.db.user>root</local.db.user>
                 <local.db.password>root</local.db.password>
             </properties>
@@ -752,7 +771,6 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>cobertura-maven-plugin</artifactId>
-                        <version>${version.cobertura}</version>
                         <executions>
                             <execution>
                                 <id>instrument-classes</id>
@@ -766,7 +784,7 @@
                 </plugins>
             </build>
         </profile>
-        
+
         <profile>
             <id>itest-openshift</id>
 
@@ -776,7 +794,7 @@
                 <local.db.url>jdbc:mysql://127.2.210.130/tablehockeyTest?characterEncoding=UTF-8</local.db.url>
                 <local.db.user>admincEsm1GT</local.db.user>
                 <local.db.password>F-qJ253_n8XK</local.db.password>
-                <!--TODO  hide passwd-->
+                <!--TODO hide passwd -->
             </properties>
 
             <build>
@@ -803,7 +821,7 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>        
+        </profile>
 
     </profiles>
 

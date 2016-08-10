@@ -1,10 +1,28 @@
-SEQ=TOURNAMENT(OPT)=select auto_increment from information_schema.tables where table_name = 'tournament' and table_schema = 'tablehockey';
-SEQ=PLAYER(OPT)=select auto_increment from information_schema.tables where table_name = 'player' and table_schema = 'tablehockey';
-SEQ=PLAY_OFF_GAME(OPT)=select auto_increment from information_schema.tables where table_name = 'play_off_game' and table_schema = 'tablehockey';
-SEQ=SEASON(OPT)=select auto_increment from information_schema.tables where table_name = 'season' and table_schema = 'tablehockey';
 SEQ=PARTICIPANT(OPT)=select auto_increment from information_schema.tables where table_name = 'participant' and table_schema = 'tablehockey';
-SEQ=ITHF_TOURNAMENT(OPT)=select auto_increment from information_schema.tables where table_name = 'ithf_tournament' and table_schema = 'tablehockey';
-SEQ=GAME(OPT)=select auto_increment from information_schema.tables where table_name = 'game' and table_schema = 'tablehockey';
+SEQ=GROUP_PARTICIPANT(OPT)=select auto_increment from information_schema.tables where table_name = 'group_participant' and table_schema = 'tablehockey';
+SEQ=PLAY_OFF_GAME(OPT)=select auto_increment from information_schema.tables where table_name = 'play_off_game' and table_schema = 'tablehockey';
 SEQ=GROUPS(OPT)=select auto_increment from information_schema.tables where table_name = 'groups' and table_schema = 'tablehockey';
+SEQ=TOURNAMENT(OPT)=select auto_increment from information_schema.tables where table_name = 'tournament' and table_schema = 'tablehockey';
+SEQ=TOURNAMENT_RATING(OPT)=select auto_increment from information_schema.tables where table_name = 'tournament_rating' and table_schema = 'tablehockey';
+SEQ=STAGE(OPT)=select auto_increment from information_schema.tables where table_name = 'stage' and table_schema = 'tablehockey';
+SEQ=RATING_POINTS(OPT)=select auto_increment from information_schema.tables where table_name = 'rating_points' and table_schema = 'tablehockey';
+SEQ=ITHF_TOURNAMENT(OPT)=select auto_increment from information_schema.tables where table_name = 'ithf_tournament' and table_schema = 'tablehockey';
+SEQ=PLAYER(OPT)=select auto_increment from information_schema.tables where table_name = 'player' and table_schema = 'tablehockey';
+SEQ=GAME(OPT)=select auto_increment from information_schema.tables where table_name = 'game' and table_schema = 'tablehockey';
+SEQ=RATING(OPT)=select auto_increment from information_schema.tables where table_name = 'rating' and table_schema = 'tablehockey';
+SEQ=TOURNAMENT_ADMIN(OPT)=select auto_increment from information_schema.tables where table_name = 'tournament_admin' and table_schema = 'tablehockey';
+SEQ=PLAYING_FORMAT(OPT)=select auto_increment from information_schema.tables where table_name = 'playing_format' and table_schema = 'tablehockey';
 SEQ=FINAL_STANDING(OPT)=select auto_increment from information_schema.tables where table_name = 'final_standing' and table_schema = 'tablehockey';
-SEQ=USER(OPT)=select auto_increment from information_schema.tables where table_name = 'user' and table_schema = 'tablehockey';
+SEQ=MATCHS(OPT)=select auto_increment from information_schema.tables where table_name = 'matchs' and table_schema = 'tablehockey';
+
+GET_PLAYER_NOT_IN_TOURNAMENT(QRY,in=Tournament,out=Player,tab=player=p,tab=participant=t,tab=participant=t_a)=
+  select distinct %p.ID @id(id), %p.NAME @name, %p.SURNAME @surname(type=surname), %p.NICKNAME @nickname, %p.GENDER @gender, %p.DATE_OF_BIRTH @dateOfBirth(type=localdate), %p.COUNTRY @country, %p.CITY @city, %p.CLUB @club, %p.WORLD_RANKING @worldRanking, %p.ITHF_ID @ithfId, %p.NAME_ASCII @nameAscii, %p.SURNAME_ASCII @surnameAscii, %p.VERIFICATION @verification
+  from %%player p LEFT JOIN %%participant r on %p.ID = %r.PLAYER_ID 
+	{= where %p.id not in 
+		(select %t_a.PLAYER_ID 
+			from %%participant t_a
+			where 
+				%t_a.TOURNAMENT_ID = :id
+		)
+	}
+;

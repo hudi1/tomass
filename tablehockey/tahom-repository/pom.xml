@@ -122,26 +122,6 @@
                     <artifactId>sqlmodel</artifactId>
                     <scope>runtime</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.common.types</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.util</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -155,10 +135,6 @@
                                 <argument>-classpath</argument>
                                 <classpath>
                                     <dependency>org.sqlproc.model:sqlmodel</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.common.types</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.util</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.xbase.lib</dependency>
                                     <dependency>mysql:mysql-connector-java</dependency>
                                     <dependency>org.sqlproc:sql-processor</dependency>
                                     <dependency>org.slf4j:slf4j-api</dependency>
@@ -166,11 +142,15 @@
                                 <argument>org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader</argument>
                                 <argument>-control</argument>
                                 <argument>definitions.model</argument>
+                                <argument>-pojo</argument>
+                                <argument>entity.model</argument>
+                                <argument>-dao</argument>
+                                <argument>dao.model</argument>                                
                                 <argument>-source</argument>
                                 <argument>src/main/resources</argument>
                                 <argument>-target</argument>
                                 <argument>src/main/resources</argument>
-                                <argument>-nomerge</argument>
+                                <!--argument>-nomerge</argument-->
                                 <argument>-debug</argument>
                             </arguments>
                         </configuration>
@@ -186,26 +166,6 @@
                     <artifactId>sqlmeta</artifactId>
                     <scope>runtime</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.common.types</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.util</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -219,10 +179,6 @@
                                 <argument>-classpath</argument>
                                 <classpath>
                                     <dependency>org.sqlproc.meta:sqlmeta</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.common.types</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.util</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.xbase.lib</dependency>
                                     <dependency>mysql:mysql-connector-java</dependency>
                                     <dependency>org.sqlproc:sql-processor</dependency>
                                     <dependency>org.slf4j:slf4j-api</dependency>
@@ -251,26 +207,6 @@
                     <artifactId>sqlmodel</artifactId>
                     <scope>runtime</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.common.types</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.util</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -284,10 +220,6 @@
                                 <argument>-classpath</argument>
                                 <classpath>
                                     <dependency>org.sqlproc.model:sqlmodel</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.common.types</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.util</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.xbase.lib</dependency>
                                     <dependency>mysql:mysql-connector-java</dependency>
                                     <dependency>org.sqlproc:sql-processor</dependency>
                                     <dependency>org.slf4j:slf4j-api</dependency>
@@ -314,27 +246,6 @@
                     <artifactId>sqlmeta</artifactId>
                     <scope>runtime</scope>
                 </dependency>
-
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.common.types</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.util</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -348,10 +259,6 @@
                                 <argument>-classpath</argument>
                                 <classpath>
                                     <dependency>org.sqlproc.meta:sqlmeta</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.common.types</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.util</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.xbase.lib</dependency>
                                     <dependency>mysql:mysql-connector-java</dependency>
                                     <dependency>org.sqlproc:sql-processor</dependency>
                                     <dependency>org.slf4j:slf4j-api</dependency>
@@ -378,27 +285,6 @@
                     <artifactId>sqlmodel</artifactId>
                     <scope>runtime</scope>
                 </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.common.types</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.util</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.xtext</groupId>
-                    <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-
             </dependencies>
             <build>
                 <plugins>
@@ -412,10 +298,6 @@
                                 <argument>-classpath</argument>
                                 <classpath>
                                     <dependency>org.sqlproc.model:sqlmodel</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.common.types</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.util</dependency>
-                                    <dependency>org.eclipse.xtext:org.eclipse.xtext.xbase.lib</dependency>
                                     <dependency>mysql:mysql-connector-java</dependency>
                                     <dependency>org.sqlproc:sql-processor</dependency>
                                     <dependency>org.slf4j:slf4j-api</dependency>

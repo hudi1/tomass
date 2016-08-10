@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../dataset.xsd">
+
+    <tournament id="1" name="@any" status="RO" playing_format_id="@null" country="@any" city="@any" address="@any"
+        logo="@null" registration_from="@timestamp" tournament_date="@date" registration_to="@timestamp" visible="true" />
+
+    <stage copy_result_stage_id="@null" id="1" name="@any" number_of_hockey="@any" sequence="@any" status="NS"
+        tournament_id="1" type="RR" win_points="@any" />
+
+    <player id="1" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="2" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="3" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="4" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+    <player id="5" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+
+    <groups id="1" name="@any" stage_id="1"/>
+    
+    <participant id="@any" player_id="1" tournament_id="1" />
+    <participant id="@any" player_id="2" tournament_id="1" />
+    <participant id="@any" player_id="3" tournament_id="1" />
+    <participant id="@any" player_id="4" tournament_id="1" />
+
+    <group_participant id="@any" group_id="1" participant_id="1" points="@any" rank="@null" score="@any" secondary_rank="@null" />
+    <group_participant id="@any" group_id="1" participant_id="2" points="@any" rank="@null" score="@any" secondary_rank="@null" />
+    <group_participant id="@any" group_id="1" participant_id="3" points="@any" rank="@null" score="@any" secondary_rank="@null" />
+    <group_participant id="@any" group_id="1" participant_id="4" points="@any" rank="@null" score="@any" secondary_rank="@null" />
+   
+</dataset>

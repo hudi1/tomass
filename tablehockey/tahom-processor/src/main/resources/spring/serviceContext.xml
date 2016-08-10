@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:oxm="http://www.springframework.org/schema/oxm"
+    xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <import resource="classpath:spring/i18n-context.xml" />
+
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <bean id="playerService" class="org.tahom.processor.service.player.PlayerService" />
+    <bean id="tRoundRobinScheduleITournamentService" class="org.tahom.processor.service.tournament.TournamentService" />
+    <bean id="userService" class="org.tahom.processor.service.user.UserService" />
+    <bean id="participantService" class="org.tahom.processor.service.participant.ParticipantService" />
+    <bean id="groupParticipantService" class="org.tahom.processor.service.participant.GroupParticipantService" />
+    <bean id="stageService" class="org.tahom.processor.service.stage.StageService" />
+    <bean id="groupService" class="org.tahom.processor.service.group.GroupService" />
+    <bean id="gameService" class="org.tahom.processor.service.game.GameService" />
+    <bean id="registrationService" class="org.tahom.processor.service.registration.RegistrationService" />
+    <bean id="matchService" class="org.tahom.processor.service.match.MatchService" />
+    <bean id="scheduleService" class="org.tahom.processor.service.schedule.ScheduleService" />
+    <bean id="finalStandingService" class="org.tahom.processor.service.finalStanding.FinalStandingService" />
+    <bean id="playOffGameService" class="org.tahom.processor.service.playOffGame.PlayOffGameService" />
+
+    <bean id="gameModel" class="org.tahom.processor.service.game.GameModel" />
+    <bean id="participantModel" class="org.tahom.processor.service.participant.ParticipantModel" />
+    <bean id="groupParticipantModel" class="org.tahom.processor.service.participant.GroupParticipantModel" />
+
+</beans>

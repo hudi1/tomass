@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../dataset.xsd">
+
+    <player id="$playerId" city="City" club="Club" country="Country" date_of_birth="2000-01-01" gender="M" name="Name"
+        name_ascii="NameAscii" nickname="Nickname" surname="Surname" surname_ascii="SurnameAscii" verification="1"
+        world_ranking="123" ithf_id="1234" />
+
+    <player id="1" city="@any" club="@any" country="@any" date_of_birth="@date" gender="M" name_ascii="@any"
+        name="@any" nickname="@any" surname_ascii="@any" surname="@any" verification="@any" world_ranking="@any" />
+
+    <tournament id="1" name="@any" status="RO" playing_format_id="@null" country="@any" city="@any" address="@any"
+        logo="@null" registration_from="@timestamp" tournament_date="@date" registration_to="@timestamp" visible="true" />
+
+    <participant id="@any" player_id="1" tournament_id="1" />
+
+</dataset>

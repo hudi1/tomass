@@ -1,7 +1,6 @@
 package org.tahom.repository.dao.impl;
 
 import java.util.List;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.sqlproc.engine.SqlControl;
 import org.sqlproc.engine.SqlEngineFactory;
@@ -176,57 +175,6 @@ public class TournamentRatingDaoImpl implements TournamentRatingDao {
   
   public int query(final TournamentRating tournamentRating, final SqlRowProcessor<TournamentRating> sqlRowProcessor) {
     return query(tournamentRating, null, sqlRowProcessor);
-  }
-  
-  public List<TournamentRating> listFromTo(final SqlSession sqlSession, final TournamentRating tournamentRating, SqlControl sqlControl) {
-    if (sqlControl == null || sqlControl.getFirstResult() == null || sqlControl.getMaxResults() == null || tournamentRating == null)
-    	return list(sqlSession, tournamentRating, sqlControl);
-    
-    if (logger.isTraceEnabled()) {
-    	logger.trace("sql list tournamentRating: " + tournamentRating + " " + sqlControl);
-    }
-    org.sqlproc.engine.SqlQueryEngine sqlEngineTournamentRating = sqlEngineFactory.getCheckedQueryEngine("SELECT_TOURNAMENT_RATING");
-    //sqlControl = getMoreResultClasses(tournamentRating, sqlControl);
-    tournamentRating.setOnlyIds_(true);
-    java.util.Set<String> initAssociations = tournamentRating.getInitAssociations_();
-    tournamentRating.setInitAssociations_(new java.util.HashSet<String>());
-    final java.util.List<java.lang.Integer> ids_ = sqlEngineTournamentRating.query(sqlSession, java.lang.Integer.class, tournamentRating, sqlControl);
-    tournamentRating.setInitAssociations_(initAssociations);
-    
-    List<TournamentRating> tournamentRatingList = new java.util.ArrayList<TournamentRating>();
-    if (!ids_.isEmpty()) {
-    	org.sqlproc.engine.impl.SqlStandardControl sqlc = new org.sqlproc.engine.impl.SqlStandardControl(sqlControl);
-    	sqlc.setFirstResult(0);
-    	sqlc.setMaxResults(0);
-    	sqlc.setOrder(null);
-    	final Map<java.lang.Integer, TournamentRating> map = new java.util.HashMap<java.lang.Integer, TournamentRating>();
-    	final SqlRowProcessor<TournamentRating> sqlRowProcessor = new SqlRowProcessor<TournamentRating>() {
-    		@Override
-    		public boolean processRow(TournamentRating result, int rownum) throws org.sqlproc.engine.SqlRuntimeException {
-    			map.put(result.getId(), result);
-    			return true;
-    		}
-    	};
-    	sqlEngineTournamentRating.query(sqlSession, TournamentRating.class, new TournamentRating()._setIds_(ids_), sqlc, sqlRowProcessor);
-    	for (java.lang.Integer id : ids_)
-    		tournamentRatingList.add(map.get(id));
-    }
-    if (logger.isTraceEnabled()) {
-    	logger.trace("sql list tournamentRating size: " + ((tournamentRatingList != null) ? tournamentRatingList.size() : "null"));
-    }
-    return tournamentRatingList;
-  }
-  
-  public List<TournamentRating> listFromTo(final TournamentRating tournamentRating, SqlControl sqlControl) {
-    return listFromTo(sqlSessionFactory.getSqlSession(), tournamentRating, sqlControl);
-  }
-  
-  public List<TournamentRating> listFromTo(final SqlSession sqlSession, final TournamentRating tournamentRating) {
-    return listFromTo(sqlSession, tournamentRating, null);
-  }
-  
-  public List<TournamentRating> listFromTo(final TournamentRating tournamentRating) {
-    return listFromTo(tournamentRating, null);
   }
   
   public int count(final SqlSession sqlSession, final TournamentRating tournamentRating, SqlControl sqlControl) {
