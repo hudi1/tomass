@@ -71,4 +71,6 @@ public interface IthfTournamentDao {
   public int count(final SqlSession sqlSession, final IthfTournament ithfTournament);
   
   public int count(final IthfTournament ithfTournament);
+  
+  public SqlControl getMoreResultClasses(final IthfTournament ithfTournament, SqlControl sqlControl);
 }

@@ -18,7 +18,7 @@
     <bean id="participantDao" class="org.tahom.repository.dao.impl.ParticipantDaoImpl" parent="dao" />
     <bean id="groupParticipantDao" class="org.tahom.repository.dao.impl.GroupParticipantDaoImpl" parent="dao" />
     <bean id="groupDao" class="org.tahom.repository.dao.impl.GroupsDaoImpl" parent="dao" />
-    <bean id="tournamentDao" class="org.tahom.repository.dao.impl.TournamentDaoImpl" parent="dao" />
+    <bean id="tournamentDao" class="org.tahom.repository.dao.impl.TournamentExtDaoImpl" parent="dao" />
     <bean id="userDao" class="org.tahom.repository.dao.impl.UserDaoImpl" parent="dao" />
     <bean id="finalStandingDao" class="org.tahom.repository.dao.impl.FinalStandingDaoImpl" parent="dao" />
     <bean id="ithfTournamentDao" class="org.tahom.repository.dao.impl.IthfTournamentDaoImpl" parent="dao" />

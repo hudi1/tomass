@@ -29,28 +29,30 @@ public class UserIT {
     @Test
     @Verify("createUserTest-verify.xml")
     public void createUserTest() throws Exception {
-        User user = userService.createUser(createDefaultUser());
+        User user = userService.registerUser(createDefaultUser());
         Assert.assertNotNull(user.getId());
     }
 
     @Test
     @Verify("getUserTest-verify.xml")
     public void getUserTest() throws Exception {
-        User user = userService.getUser(1);
-        Assert.assertNotNull(user);
+        User user = new User();
+        user.setId(1);
+        User userDb = userService.getUser(user);
+        Assert.assertNotNull(userDb);
     }
 
     @Test
     @Verify("getUserTest-verify.xml")
     public void getAllUserTest() throws Exception {
-        List<User> users = userService.getAllUsers();
+        List<User> users = userService.listAllUsers();
         Assert.assertNotSame(0, users.size());
     }
 
     @Test
     @Verify("updateUserTest-verify.xml")
     public void updateUserTest() throws Exception {
-        int count = userService.updateUser(createUpdatedUser(1));
+        int count = userService.editUser(createUpdatedUser(1));
         Assert.assertNotSame(0, count);
     }
 

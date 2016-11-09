@@ -17,15 +17,15 @@ package org.tahom.repository.dao {
     #Dao GroupsDao {
     }
 
-    #CRUD(org.tahom.repository.model.IthfTournament) #Query(org.tahom.repository.model.IthfTournament)
+    #InheritanceHandler(player,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.IthfTournament) #Query(org.tahom.repository.model.IthfTournament)
     #Dao IthfTournamentDao {
     }
 
-    #CRUD(org.tahom.repository.model.Matchs) #Query(org.tahom.repository.model.Matchs)
+    #InheritanceHandler(homePlayer,"user"=org.tahom.repository.model.User) #InheritanceHandler(awayPlayer,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.Matchs) #Query(org.tahom.repository.model.Matchs)
     #Dao MatchsDao {
     }
 
-    #CRUD(org.tahom.repository.model.Participant) #Query(org.tahom.repository.model.Participant)
+    #InheritanceHandler(player,"user"=org.tahom.repository.model.User) #CRUD(org.tahom.repository.model.Participant) #Query(org.tahom.repository.model.Participant)
     #Dao ParticipantDao {
     }
 

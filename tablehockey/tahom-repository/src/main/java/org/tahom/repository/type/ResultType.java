@@ -7,19 +7,29 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sqlproc.engine.SqlQuery;
 import org.sqlproc.engine.SqlRuntimeContext;
 import org.sqlproc.engine.SqlRuntimeException;
-import org.sqlproc.engine.type.SqlInternalType;
+import org.sqlproc.engine.type.SqlTaggedMetaType;
+import org.sqlproc.engine.type.SqlTypeFactory;
 import org.tahom.repository.type.model.Results;
 
-public class ResultType extends SqlInternalType {
+public class ResultType implements SqlTaggedMetaType {
 
     static Pattern pattern = Pattern.compile("");
+
+    final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Class<?>[] getClassTypes() {
         return new Class[] { Results.class };
+    }
+
+    @Override
+    public Object getProviderSqlType() {
+        return this;
     }
 
     @Override
@@ -28,7 +38,7 @@ public class ResultType extends SqlInternalType {
     }
 
     @Override
-    public void addScalar(SqlQuery query, String dbName, Class<?> attributeType) {
+    public void addScalar(SqlTypeFactory typeFactory, SqlQuery query, String dbName, Class<?>... attributeTypes) {
         query.addScalar(dbName, Types.VARCHAR);
     }
 
@@ -71,8 +81,8 @@ public class ResultType extends SqlInternalType {
     }
 
     @Override
-    public void setParameter(SqlRuntimeContext runtimeCtxCtx, SqlQuery query, String paramName, Object inputValue,
-            Class<?> inputType, boolean ingoreError) throws SqlRuntimeException {
+    public void setParameter(SqlRuntimeContext runtimeCtx, SqlQuery query, String paramName, Object inputValue,
+            boolean ingoreError, Class<?>... inputTypes) throws SqlRuntimeException {
         if (inputValue == null) {
             query.setParameter(paramName, inputValue, Types.VARCHAR);
         } else {

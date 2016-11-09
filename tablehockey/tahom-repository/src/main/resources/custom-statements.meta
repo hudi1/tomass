@@ -26,3 +26,29 @@ GET_PLAYER_NOT_IN_TOURNAMENT(QRY,in=Tournament,out=Player,tab=player=p,tab=parti
 		)
 	}
 ;
+
+SELECT_TOURNAMENT_BY_USER_ADMIN(QRY,in=User,out=Tournament,tab=tournament=t,tab=tournamentAdmin=t1,tab=user=u)=
+  select 
+    %t.ID @id(id), %t.NAME @name, %t.STATUS @status, %t.PLAYING_FORMAT_ID @playingFormat.id(id), %t.COUNTRY @country, %t.CITY @city, %t.ADDRESS @address, %t.LOGO @logo, %t.REGISTRATION_FROM @registrationFrom(type=localdatetime), %t.TOURNAMENT_DATE @tournamentDate(type=localdate), %t.REGISTRATION_TO @registrationTo(type=localdatetime), %t.VISIBLE @visible
+    , %u.PLAYER_ID @admin.id(id), %u.EMAIL @admin.email, %u.LOGIN @admin.login, %u.PASSWORD @admin.password, %u.PHONE @admin.phone, %u.ROLE @admin.role, %u.VALIDITY @admin.validity 
+  from %%tournament t
+  left join %%tournament_admin t1 on %t.ID = %t1.TOURNAMENT_ID left join %%user u on %t1.USER_ID = %u.PLAYER_ID 
+  {= where
+    {& %u.PLAYER_ID = :id(!empty) }
+  }
+;
+
+SELECT_TOURNAMENT_BY_USER_PARTICIPANT(QRY,in=User,out=Tournament,tab=participant=p1)=
+  select 
+    %t.ID @id(id), %t.NAME @name, %t.STATUS @status, %t.PLAYING_FORMAT_ID @playingFormat.id(id), %t.COUNTRY @country, %t.CITY @city, %t.ADDRESS @address, %t.LOGO @logo, %t.REGISTRATION_FROM @registrationFrom(type=localdatetime), %t.TOURNAMENT_DATE @tournamentDate(type=localdate), %t.REGISTRATION_TO @registrationTo(type=localdatetime), %t.VISIBLE @visible
+    , %p1.ID @participants.id(id), %p1.TOURNAMENT_ID @participants.tournament.id, %p1.PLAYER_ID @participants.player.id
+  from %%tournament t
+  left join %%participant p1 on %t.ID = %p1.TOURNAMENT_ID
+  {= where
+    {& %p1.PLAYER_ID = :id(!empty) }
+  }
+;
+
+
+
+

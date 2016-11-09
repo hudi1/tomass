@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.transaction.annotation.Transactional;
 import org.tahom.repository.dao.ParticipantDao;
 import org.tahom.repository.model.Participant;
+import org.tahom.repository.model.Participant.Association;
 
 public class ParticipantService {
 
@@ -25,6 +26,8 @@ public class ParticipantService {
 
     @Transactional(readOnly = true)
     public List<Participant> listParticipants(Participant participant) {
+        participant._clearInit_(Association.player);
+        participant._clearInit_(Association.tournament);
         return participantDao.list(participant);
     }
 }

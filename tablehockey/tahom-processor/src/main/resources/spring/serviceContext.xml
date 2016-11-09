@@ -11,7 +11,7 @@
     <aop:aspectj-autoproxy proxy-target-class="true" />
 
     <bean id="playerService" class="org.tahom.processor.service.player.PlayerService" />
-    <bean id="tRoundRobinScheduleITournamentService" class="org.tahom.processor.service.tournament.TournamentService" />
+    <bean id="tournamentService" class="org.tahom.processor.service.tournament.TournamentService" />
     <bean id="userService" class="org.tahom.processor.service.user.UserService" />
     <bean id="participantService" class="org.tahom.processor.service.participant.ParticipantService" />
     <bean id="groupParticipantService" class="org.tahom.processor.service.participant.GroupParticipantService" />

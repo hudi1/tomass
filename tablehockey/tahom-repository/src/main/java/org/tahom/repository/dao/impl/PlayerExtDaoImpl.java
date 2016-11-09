@@ -27,7 +27,7 @@ public class PlayerExtDaoImpl extends PlayerDaoImpl implements PlayerExtDao {
         List<Player> playerList = sqlEnginePlayer.query(sqlSessionFactory.getSqlSession(), Player.class, tournament);
 
         if (logger.isTraceEnabled()) {
-            logger.trace("list player size: " + ((playerList != null) ? playerList.size() : "null"));
+            logger.trace("list players size: " + ((playerList != null) ? playerList.size() : "null"));
         }
         return playerList;
     }

@@ -15,16 +15,100 @@ public class UserService {
     @Inject
     private UserDao userDao;
 
+    /**
+     * UC1a
+     * 
+     * @param user
+     * @return
+     */
     @Transactional
-    public User createUser(User user) {
+    public User registerUser(User user) {
         return userDao.insert(user);
     }
 
+    /**
+     * UC1b
+     * 
+     * @param user
+     * @return
+     */
     @Transactional
-    public int updateUser(User user) {
+    public boolean loginUser(User user) {
+        // TODO authentication
+        return true;
+    }
+
+    /**
+     * UC1c
+     * 
+     * @param user
+     */
+    @Transactional
+    public void logoutUser(User user) {
+        // TODO authentication
+    }
+
+    /**
+     * UC1d
+     * 
+     * @param user
+     */
+    @Transactional
+    public void remindPassword(User user) {
+        // TODO reset password
+    }
+
+    /**
+     * UC1e
+     * 
+     * @param user
+     * @return
+     */
+    @Transactional
+    public int editUser(User user) {
         return userDao.update(user._setNull_(Attribute.values()));
     }
 
+    /**
+     * UC1f
+     * 
+     * @param user
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public User getUser(User user) {
+        return userDao.get(user);
+    }
+
+    /**
+     * UC1g
+     * 
+     * @param user
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public User getUser(Integer id) {
+        User user = new User();
+        user.setId(id);
+        return getUser(user);
+    }
+
+    /**
+     * UC1h
+     * 
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public List<User> listAllUsers() {
+        return userDao.list(new User());
+    }
+
+    /**
+     * UC1i
+     * 
+     * @param userId
+     * @return
+     */
     @Transactional
     public int deleteUser(Integer userId) {
         User user = new User();
@@ -33,18 +117,6 @@ public class UserService {
         SqlStandardControl control = new SqlStandardControl();
         control.setSkipEmptyStatement(true);
         return userDao.update(user, control);
-    }
-
-    @Transactional(readOnly = true)
-    public User getUser(Integer userId) {
-        User user = new User();
-        user.setId(userId);
-        return userDao.get(user);
-    }
-
-    @Transactional(readOnly = true)
-    public List<User> getAllUsers() {
-        return userDao.list(new User());
     }
 
 }

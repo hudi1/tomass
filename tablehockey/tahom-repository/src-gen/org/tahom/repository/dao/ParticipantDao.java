@@ -71,4 +71,6 @@ public interface ParticipantDao {
   public int count(final SqlSession sqlSession, final Participant participant);
   
   public int count(final Participant participant);
+  
+  public SqlControl getMoreResultClasses(final Participant participant, SqlControl sqlControl);
 }

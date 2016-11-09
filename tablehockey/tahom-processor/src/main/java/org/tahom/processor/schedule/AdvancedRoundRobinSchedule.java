@@ -19,7 +19,7 @@ public class AdvancedRoundRobinSchedule extends RoundRobinSchedule {
     private Integer actualRound;
     private Integer actualHockey;
 
-    // TODO optimalizovat pre menej hokej
+    // TODO optimalizovat pre menej hokejov
     public AdvancedRoundRobinSchedule(ScheduleDto scheduleDto) {
         playerPerBasicGroup = new LinkedList<>(Lists.partition(scheduleDto.getGroup().getGroupParticipants(),
                 scheduleDto.getGroup().getStage().getCopyResultStage().getGroups().size()));

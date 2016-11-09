@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.tahom.processor.service.player.PlayerService;
 import org.tahom.repository.model.Player;
-import org.tahom.repository.model.Player.Association;
 import org.tahom.repository.model.PlayerGender;
-import org.tahom.repository.model.Tournament;
 import org.tahom.repository.type.model.Surname;
 
 @RunWith(LightAirSpringRunner.class)
@@ -30,7 +28,7 @@ public class PlayerIT {
     @Test
     @Verify("createPlayerTest-verify.xml")
     public void createPlayerTest() throws Exception {
-        Player player = playerService.createPlayer(createDefaultPlayer());
+        Player player = playerService.addPlayer(createDefaultPlayer());
         Assert.assertNotNull(player.getId());
     }
 
@@ -44,28 +42,28 @@ public class PlayerIT {
     @Test
     @Verify("getPlayerTest-verify.xml")
     public void getAllPlayerTest() throws Exception {
-        List<Player> players = playerService.listPlayers(new Player()._setInit_(Association.values()));
+        List<Player> players = playerService.listAllPlayers();
         Assert.assertSame(1, players.size());
     }
 
     @Test
     @Verify("updatePlayerTest-verify.xml")
     public void updatePlayerTest() throws Exception {
-        int count = playerService.updatePlayer(createUpdatedPlayer(1));
+        int count = playerService.editPlayer(createUpdatedPlayer(1));
         Assert.assertNotSame(0, count);
     }
 
     @Test
     @Verify("deletePlayerTest-verify.xml")
     public void deletePlayerTest() throws Exception {
-        int count = playerService.deletePlayer(new Player()._setId(1));
+        int count = playerService.deletePlayer(1);
         Assert.assertNotSame(0, count);
     }
 
     @Test
     @Verify("getPlayerTest-verify.xml")
     public void getNotRegisteredPlayersTest() throws Exception {
-        List<Player> players = playerService.listNotRegisteredPlayers(new Tournament()._setId(1));
+        List<Player> players = playerService.listNotRegisteredPlayers(1);
         Assert.assertSame(0, players.size());
     }
 

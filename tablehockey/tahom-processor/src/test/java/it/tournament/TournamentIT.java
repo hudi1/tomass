@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.tahom.processor.service.tournament.TournamentService;
 import org.tahom.repository.model.Tournament;
-import org.tahom.repository.model.Tournament.Association;
 import org.tahom.repository.model.TournamentStatus;
 
 @RunWith(LightAirSpringRunner.class)
@@ -31,14 +30,14 @@ public class TournamentIT {
     @Test
     @Verify("createTournamentTest-verify.xml")
     public void createTournamentTest() throws Exception {
-        Tournament tournament = tournamentService.createTournament(createDefaultTournament());
+        Tournament tournament = tournamentService.addTournament(createDefaultTournament());
         Assert.assertNotNull(tournament.getId());
     }
 
     @Test
     @Verify("deleteTournamentTest-verify.xml")
     public void deleteTournamentTest() throws Exception {
-        int count = tournamentService.deleteTournament(new Tournament()._setId(1));
+        int count = tournamentService.deleteTournament(1);
         Assert.assertNotSame(0, count);
     }
 
@@ -52,16 +51,29 @@ public class TournamentIT {
     @Test
     @Verify("getTournamentTest-verify.xml")
     public void listTournamentTest() throws Exception {
-        List<Tournament> tournaments = tournamentService
-                .listTournament(new Tournament()._setInit_(Association.values()));
+        List<Tournament> tournaments = tournamentService.listAllTournament();
         Assert.assertSame(1, tournaments.size());
     }
 
     @Test
     @Verify("updateTournamentTest-verify.xml")
     public void updateTournamentTest() throws Exception {
-        int count = tournamentService.updateTournament(createUpdatedTournament(1));
+        int count = tournamentService.editTournament(createUpdatedTournament(1));
         Assert.assertNotSame(0, count);
+    }
+
+    @Test
+    @Verify("getTournamentTest-verify.xml")
+    public void listTournamentsByUserAdminTest() throws Exception {
+        List<Tournament> tournaments = tournamentService.listTournamentsByUserAdmin(1);
+        Assert.assertSame(1, tournaments.size());
+    }
+
+    @Test
+    @Verify("getTournamentTest-verify.xml")
+    public void listTournamentsByUserParticipantTest() throws Exception {
+        List<Tournament> tournaments = tournamentService.listTournamentsByUserParticipant(1);
+        Assert.assertSame(1, tournaments.size());
     }
 
     public Tournament createDefaultTournament() throws Exception {

@@ -71,4 +71,6 @@ public interface MatchsDao {
   public int count(final SqlSession sqlSession, final Matchs matchs);
   
   public int count(final Matchs matchs);
+  
+  public SqlControl getMoreResultClasses(final Matchs matchs, SqlControl sqlControl);
 }

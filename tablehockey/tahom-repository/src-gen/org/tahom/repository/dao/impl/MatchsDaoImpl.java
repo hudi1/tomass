@@ -10,6 +10,7 @@ import org.sqlproc.engine.SqlSession;
 import org.sqlproc.engine.SqlSessionFactory;
 import org.tahom.repository.dao.MatchsDao;
 import org.tahom.repository.model.Matchs;
+import org.tahom.repository.model.User;
 
 @SuppressWarnings("all")
 public class MatchsDaoImpl implements MatchsDao {
@@ -60,7 +61,7 @@ public class MatchsDaoImpl implements MatchsDao {
     	logger.trace("sql get: " + matchs + " " + sqlControl);
     }
     org.sqlproc.engine.SqlCrudEngine sqlGetEngineMatchs = sqlEngineFactory.getCheckedCrudEngine("GET_MATCHS");
-    //sqlControl = getMoreResultClasses(matchs, sqlControl);
+    sqlControl = getMoreResultClasses(matchs, sqlControl);
     Matchs matchsGot = sqlGetEngineMatchs.get(sqlSession, Matchs.class, matchs, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql get matchs result: " + matchsGot);
@@ -133,7 +134,7 @@ public class MatchsDaoImpl implements MatchsDao {
     	logger.trace("sql list matchs: " + matchs + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineMatchs = sqlEngineFactory.getCheckedQueryEngine("SELECT_MATCHS");
-    //sqlControl = getMoreResultClasses(matchs, sqlControl);
+    sqlControl = getMoreResultClasses(matchs, sqlControl);
     List<Matchs> matchsList = sqlEngineMatchs.query(sqlSession, Matchs.class, matchs, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql list matchs size: " + ((matchsList != null) ? matchsList.size() : "null"));
@@ -158,7 +159,7 @@ public class MatchsDaoImpl implements MatchsDao {
     	logger.trace("sql query matchs: " + matchs + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineMatchs = sqlEngineFactory.getCheckedQueryEngine("SELECT_MATCHS");
-    //sqlControl = getMoreResultClasses(matchs, sqlControl);
+    sqlControl = getMoreResultClasses(matchs, sqlControl);
     int rownums = sqlEngineMatchs.query(sqlSession, Matchs.class, matchs, sqlControl, sqlRowProcessor);
     if (logger.isTraceEnabled()) {
     	logger.trace("sql query matchs size: " + rownums);
@@ -186,7 +187,7 @@ public class MatchsDaoImpl implements MatchsDao {
     	logger.trace("sql list matchs: " + matchs + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineMatchs = sqlEngineFactory.getCheckedQueryEngine("SELECT_MATCHS");
-    //sqlControl = getMoreResultClasses(matchs, sqlControl);
+    sqlControl = getMoreResultClasses(matchs, sqlControl);
     matchs.setOnlyIds_(true);
     java.util.Set<String> initAssociations = matchs.getInitAssociations_();
     matchs.setInitAssociations_(new java.util.HashSet<String>());
@@ -234,7 +235,7 @@ public class MatchsDaoImpl implements MatchsDao {
     	logger.trace("count matchs: " + matchs + " " + sqlControl);
     }
     org.sqlproc.engine.SqlQueryEngine sqlEngineMatchs = sqlEngineFactory.getCheckedQueryEngine("SELECT_MATCHS");
-    //sqlControl = getMoreResultClasses(matchs, sqlControl);
+    sqlControl = getMoreResultClasses(matchs, sqlControl);
     int count = sqlEngineMatchs.queryCount(sqlSession, matchs, sqlControl);
     if (logger.isTraceEnabled()) {
     	logger.trace("count: " + count);
@@ -252,5 +253,26 @@ public class MatchsDaoImpl implements MatchsDao {
   
   public int count(final Matchs matchs) {
     return count(matchs, null);
+  }
+  
+  public SqlControl getMoreResultClasses(final Matchs matchs, SqlControl sqlControl) {
+    if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
+    	return sqlControl;
+    java.util.Map<String, Class<?>> moreResultClasses = null;
+    if (matchs != null && matchs.toInit_(Matchs.Association.awayPlayer.name())) {
+    	if (moreResultClasses == null)
+    		moreResultClasses = new java.util.HashMap<String, Class<?>>();
+    	moreResultClasses.put("user", User.class);
+    }
+    if (matchs != null && matchs.toInit_(Matchs.Association.homePlayer.name())) {
+    	if (moreResultClasses == null)
+    		moreResultClasses = new java.util.HashMap<String, Class<?>>();
+    	moreResultClasses.put("user", User.class);
+    }
+    if (moreResultClasses != null) {
+    	sqlControl = new org.sqlproc.engine.impl.SqlStandardControl(sqlControl);
+    	((org.sqlproc.engine.impl.SqlStandardControl) sqlControl).setMoreResultClasses(moreResultClasses);
+    }
+    return sqlControl;
   }
 }
